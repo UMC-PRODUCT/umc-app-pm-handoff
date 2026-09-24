@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#102b62" />
+    <meta name="description" content="UMC App 서비스 기획 인수인계 목차" />
+    <title>UMC App · 서비스 기획 인수인계</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#contents">본문으로 바로가기</a>
+    <div class="site-shell">
+      <aside class="sidebar" aria-label="문서 목차">
+        <a class="brand" href="#top" aria-label="UMC App 인수인계 목차 맨 위로">
+          <span class="brand-mark" aria-hidden="true">U</span>
+          <span><strong>UMC App</strong><small>PM HANDOFF</small></span>
+        </a>
+        <div class="sidebar-caption">서비스 기획 · 목차 초안</div>
+        <nav aria-label="장별 이동">
+          <ol class="side-list">
+            <li><a href="#chapter-01"><span>01</span> 문서 안내</a></li>
+            <li><a href="#chapter-02"><span>02</span> 서비스 개요</a></li>
+            <li><a href="#chapter-03"><span>03</span> 서비스 전체 구조</a></li>
+            <li><a href="#chapter-04"><span>04</span> 공통 정책</a></li>
+            <li><a href="#chapter-05"><span>05</span> 화면별 기능 명세</a></li>
+            <li><a href="#chapter-06"><span>06</span> 핵심 기능의 전체 흐름</a></li>
+            <li><a href="#chapter-07"><span>07</span> 운영 정책과 관리자 업무</a></li>
+            <li><a href="#chapter-08"><span>08</span> 성과와 사용자 피드백</a></li>
+            <li><a href="#chapter-09"><span>09</span> 미완료 과제와 향후 계획</a></li>
+            <li><a href="#chapter-10"><span>10</span> 인수인계 자료</a></li>
+          </ol>
+        </nav>
+        <div class="sidebar-bottom">
+          <span class="sidebar-line"></span>
+          <p>다음 PM이 기획의 맥락부터<br />현재 상태까지 이어서 읽는 공간</p>
+        </div>
+      </aside>
+
+      <main id="contents" class="main-content">
+        <header id="top" class="page-header">
+          <div class="eyebrow"><span class="eyebrow-line"></span> UMC PRODUCT TEAM / PM</div>
+          <div class="header-grid">
+            <div>
+              <p class="edition">INTERNAL DOCUMENT · OUTLINE 01</p>
+              <h1>서비스 기획<br /><em>인수인계</em></h1>
+              <p class="lead">기획 의도와 화면별 기능, 운영 기준, 다음 결정 사항을 한곳에서 확인할 수 있도록 구성한 목차입니다.</p>
+            </div>
+            <div class="header-stamp" aria-label="총 10개 장">
+              <strong>10</strong>
+              <span>CHAPTERS</span>
+              <small>목차 초안</small>
+            </div>
+          </div>
+          <div class="header-meta">
+            <span><b>대상</b> 다음 기수 PM · 운영진</span>
+            <span><b>범위</b> UMC App 서비스 전체</span>
+            <span><b>상태</b> 내용 정리 전</span>
+          </div>
+        </header>
+
+        <section class="reading-note" aria-labelledby="note-title">
+          <span class="note-index">READ THIS FIRST</span>
+          <div>
+            <h2 id="note-title">지금은 목차를 검토하는 단계입니다.</h2>
+            <p>아래 항목은 인수인계서에 담을 범위입니다. 실제 정책과 화면 동작은 함께 확인하며 채웁니다. 기능의 출시 여부도 내용 작성 시 구분합니다.</p>
+          </div>
+        </section>
+
+        <div class="section-heading"><span>DOCUMENT MAP</span><span>01 — 10</span></div>
+        <div class="chapters">
+          <section id="chapter-01" class="chapter" aria-labelledby="title-01">
+            <div class="chapter-no">01<span>시작하기</span></div>
+            <div class="chapter-body"><h2 id="title-01">문서 안내</h2><p class="chapter-intro">이 문서의 기준과 읽는 방법을 먼저 맞춥니다.</p><ul><li>문서의 목적과 대상</li><li>기준 버전·작성일·업데이트 방법</li><li>기능 상태 표기: 출시됨 / 개발 중 / 기획 중 / 중단됨</li></ul></div>
+          </section>
+          <section id="chapter-02" class="chapter" aria-labelledby="title-02">
+            <div class="chapter-no">02<span>왜 만들었나</span></div>
+            <div class="chapter-body"><h2 id="title-02">서비스 개요</h2><p class="chapter-intro">서비스가 해결하려는 문제와 기획 판단의 출발점을 남깁니다.</p><ul><li>UMC App 한 줄 소개와 기획 의도</li><li>해결하려는 운영 문제</li><li>주요 사용자와 역할: 챌린저·운영진 등</li><li>서비스의 핵심 가치와 성공 기준</li></ul></div>
+          </section>
+          <section id="chapter-03" class="chapter" aria-labelledby="title-03">
+            <div class="chapter-no">03<span>어떻게 쓰나</span></div>
+            <div class="chapter-body"><h2 id="title-03">서비스 전체 구조</h2><p class="chapter-intro">사용자가 앱에 들어와 활동을 마칠 때까지의 경로를 연결합니다.</p><ul><li>사용자 여정: 가입부터 활동 종료까지</li><li>화면 구조도와 주요 진입 경로</li><li>역할별 접근 권한</li><li>알림·딥링크 등 화면 밖에서 시작되는 흐름</li></ul></div>
+          </section>
+          <section id="chapter-04" class="chapter" aria-labelledby="title-04">
+            <div class="chapter-no">04<span>공통 기준</span></div>
+            <div class="chapter-body"><h2 id="title-04">공통 정책</h2><p class="chapter-intro">여러 화면에 함께 적용되는 정책을 한 번만 정의합니다.</p><ul><li>계정·기수·소속·권한 정책</li><li>로딩·빈 화면·오류·권한 거부 시 동작</li><li>알림 및 개인정보 관련 정책</li><li>기능 상태와 정책이 달라지는 조건</li></ul></div>
+          </section>
+          <section id="chapter-05" class="chapter featured" aria-labelledby="title-05">
+            <div class="chapter-no">05<span>핵심 장</span></div>
+            <div class="chapter-body"><h2 id="title-05">화면별 기능 명세</h2><p class="chapter-intro">실제 화면을 기준으로 기능과 예외 상황을 빠짐없이 기록합니다.</p><ul class="screen-list"><li>인증·온보딩</li><li>홈</li><li>공지</li><li>활동: 출석·스터디·운영 기능</li><li>커뮤니티</li><li>프로젝트 지원·심사</li><li>마이페이지·명함</li><li>배지 등 부가 기능</li><li>점검·업데이트 안내</li><li>watchOS·Live Activity</li></ul><div class="chapter-note"><b>모든 화면에 같은 기록 형식 적용</b><span>기획 목적 · 진입 경로 · 사용자별 노출 · 화면 요소와 동작 · 예외 상황 · 연결 화면 · 현재 상태 · 참고 자료</span></div></div>
+          </section>
+          <section id="chapter-06" class="chapter" aria-labelledby="title-06">
+            <div class="chapter-no">06<span>기능 흐름</span></div>
+            <div class="chapter-body"><h2 id="title-06">핵심 기능의 전체 흐름</h2><p class="chapter-intro">여러 화면에 걸친 작업을 시작부터 끝까지 설명합니다.</p><ul><li>공지 작성 → 발송 → 확인 → 재알림</li><li>출석 세션 생성 → 참여 → 판정 → 운영진 확인</li><li>스터디 운영 → 과제·제출 관리</li><li>커뮤니티 스레드 생성 → 참여 → 관리</li><li>프로젝트 지원 → 심사</li><li>명함 생성 → 교환 → 보관</li></ul></div>
+          </section>
+          <section id="chapter-07" class="chapter" aria-labelledby="title-07">
+            <div class="chapter-no">07<span>운영하기</span></div>
+            <div class="chapter-body"><h2 id="title-07">운영 정책과 관리자 업무</h2><p class="chapter-intro">기수가 바뀌어도 반복되는 운영 판단과 업무를 남깁니다.</p><ul><li>기수 시작·진행·종료 시 해야 할 일</li><li>공지·출석·스터디·회원 관리 기준</li><li>문의·신고·오류 대응과 담당자</li></ul></div>
+          </section>
+          <section id="chapter-08" class="chapter" aria-labelledby="title-08">
+            <div class="chapter-no">08<span>돌아보기</span></div>
+            <div class="chapter-body"><h2 id="title-08">성과와 사용자 피드백</h2><p class="chapter-intro">무엇이 효과가 있었고 무엇이 불편했는지 확인합니다.</p><ul><li>추적할 지표</li><li>지금까지 확인된 사용성 문제</li><li>사용자·운영진 피드백과 반영 결과</li></ul></div>
+          </section>
+          <section id="chapter-09" class="chapter" aria-labelledby="title-09">
+            <div class="chapter-no">09<span>이어받기</span></div>
+            <div class="chapter-body"><h2 id="title-09">미완료 과제와 향후 계획</h2><p class="chapter-intro">다음 PM이 바로 검토해야 할 일과 판단 근거를 모읍니다.</p><ul><li>개발 중·미연결·보류 기능</li><li>우선순위와 그 판단 근거</li><li>다음 PM이 결정해야 할 사항</li></ul></div>
+          </section>
+          <section id="chapter-10" class="chapter" aria-labelledby="title-10">
+            <div class="chapter-no">10<span>참고 자료</span></div>
+            <div class="chapter-body"><h2 id="title-10">인수인계 자료</h2><p class="chapter-intro">원본 자료와 사람을 찾을 수 있는 마지막 연결점입니다.</p><ul><li>디자인·기획·이슈·배포 자료 링크</li><li>협업 담당자와 의사결정 경로</li><li>용어집</li><li>변경 이력</li></ul></div>
+          </section>
+        </div>
+        <footer class="page-footer"><span>UMC App · PM Handoff</span><a href="#top">맨 위로 ↑</a></footer>
+      </main>
+    </div>
+  </body>
+</html>
