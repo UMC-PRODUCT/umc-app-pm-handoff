@@ -362,3 +362,26 @@ main { min-height: calc(100vh - 116px); outline: none; }
   .permissions-branch::before { width: 14px; height: 1px; left: -15px; top: 23px; }
   .permissions-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* Notice formatting diagram. */
+.markdown-guide { margin: 20px 0 28px; color: #263a2b; }
+.markdown-guide figcaption { display: grid; gap: 8px; margin-bottom: 18px; }
+.markdown-guide figcaption > strong { font-size: clamp(19px, 2.3vw, 25px); line-height: 1.4; letter-spacing: -.045em; }
+.markdown-guide figcaption p, .markdown-guide .markdown-guide-note { margin: 0; font-size: 12px; line-height: 1.8; color: #59695e; }
+.markdown-diagram-scroll { overflow-x: auto; border: 1px solid #d6e1d6; border-radius: 16px; }
+.markdown-diagram-scroll:focus-visible { outline: 2px solid #25644d; outline-offset: 3px; }
+.markdown-diagram { display: block; width: 100%; min-width: 680px; height: auto; }
+.markdown-guide .markdown-guide-note { margin-top: 12px; }
+
+/* Importance is separate from implementation status. */
+.priority-guide { margin-bottom: 40px; padding: 24px; border: 1px solid #d6e1d6; border-radius: 12px; background: #f7f9f6; }
+.priority-guide h2 { margin: 0 0 18px; font-size: 19px; }
+.priority-guide h2 small { margin-left: 8px; color: #637064; font-size: 12px; font-weight: 500; }
+.priority-guide ul { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.priority-guide li { display: flex; align-items: baseline; gap: 12px; font-size: 14px; }
+.priority-guide p { margin: 18px 0 0; color: #637064; font-size: 13px; line-height: 1.7; }
+.priority-badge { display: inline-block; flex-shrink: 0; margin-left: 10px; padding: 3px 9px; border: 1px solid transparent; border-radius: 5px; vertical-align: middle; font-size: 12px; font-weight: 700; line-height: 1.5; letter-spacing: 0; white-space: nowrap; }
+.priority-guide .priority-badge { margin-left: 0; }
+.priority-core { color: #fff; background: #28543d; border-color: #28543d; }
+.priority-main { color: #30593d; background: #e6efe4; border-color: #bdcfb9; }
+.priority-extra { color: #57625b; background: #fff; border-color: #c6cec7; }

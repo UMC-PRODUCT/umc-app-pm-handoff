@@ -3,6 +3,17 @@ import PerformanceDashboard from './PerformanceDashboard'
 import RolePermissions from './RolePermissions'
 import ScreenStructure from './ScreenStructure'
 import AppExtensions from './AppExtensions'
+import NoticeMarkdownGuide from './NoticeMarkdownGuide'
+
+const priorities = {
+  core: { label: '핵심', description: '기본 이용과 UMC App의 본래 목적에 꼭 필요한 기능' },
+  main: { label: '주요', description: '활동과 운영의 흐름을 완성하는 기능' },
+  extra: { label: '확장', description: '앱의 편의와 새로운 경험을 더하는 기능' },
+}
+
+function PriorityBadge({ priority }) {
+  return priorities[priority] && <span className={`priority-badge priority-${priority}`} aria-label={`중요도: ${priorities[priority].label}`}>{priorities[priority].label}</span>
+}
 
 export default function ChapterDashboard({ chapter, chapters }) {
   const index = chapters.findIndex((item) => item.id === chapter.id)
@@ -21,12 +32,17 @@ export default function ChapterDashboard({ chapter, chapters }) {
 
       {chapter.id === 'chapter-08' && <PerformanceDashboard />}
       <section className="chapter-content" aria-labelledby="chapter-title">
+        {chapter.id === 'chapter-05' && <aside className="priority-guide" aria-labelledby="priority-guide-title">
+          <h2 id="priority-guide-title">기능 중요도 <small>검토용 제안</small></h2>
+          <ul>{Object.entries(priorities).map(([priority, { description }]) => <li key={priority}><PriorityBadge priority={priority} /><span>{description}</span></li>)}</ul>
+          <p>화면 제목은 해당 영역의 중요도, 세부 제목은 개별 기능의 중요도를 나타냅니다. 구현·출시 상태나 개발 순서와는 별개이며, ‘확장’도 삭제해도 되는 기능을 뜻하지 않습니다.</p>
+        </aside>}
         <ol className="topic-list">
           {chapter.topics.map((topic, topicIndex) => {
             const detail = chapter.details?.[topicIndex]
             return (
               <li key={topic}>
-                <div className="topic-title"><span className="topic-number">{String(topicIndex + 1).padStart(2, '0')}</span><h3>{topic}</h3></div>
+                <div className="topic-title"><span className="topic-number">{String(topicIndex + 1).padStart(2, '0')}</span><h3>{topic}{detail?.priority && <PriorityBadge priority={detail.priority} />}</h3></div>
                 {detail && <div className="topic-detail">
                   <p>{detail.body}</p>
                   {chapter.id === 'chapter-03' && topicIndex === 1 && <ScreenStructure />}
@@ -35,7 +51,8 @@ export default function ChapterDashboard({ chapter, chapters }) {
                   {detail.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                   {detail.points?.length > 0 && <ul className="detail-points">{detail.points.map((point) => <li key={point}>{point}</li>)}</ul>}
                   {detail.groups?.length > 0 && <div className="detail-groups">{detail.groups.map((group) => <section key={group.title}>
-                    <h4>{group.title}</h4>
+                    <h4>{group.title}{group.priority && <PriorityBadge priority={group.priority} />}</h4>
+                    {group.visual === 'notice-markdown' && <NoticeMarkdownGuide />}
                     {group.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                     {group.points?.length > 0 && <ul>{group.points.map((point) => <li key={point}>{point}</li>)}</ul>}
                   </section>)}</div>}
