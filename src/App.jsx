@@ -108,7 +108,7 @@ export default function App() {
         </main>
 
         <footer className="site-footer">
-          <div className="footer-credits"><span>UMC App 서비스 기획 인수인계</span><span>© 2026 제옹</span></div>
+          <div className="footer-credits"><span>UMC App 서비스 기획 인수인계</span><span>Copyright © 2026 제옹</span></div>
           <div className="footer-reference"><span>UMC PRODUCT Design System을 참고하여 제작했습니다.</span></div>
         </footer>
       </div>
