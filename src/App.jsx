@@ -10,7 +10,16 @@ function currentChapter() {
 export default function App() {
   const [activeChapter, setActiveChapter] = useState(currentChapter)
   const [navigationCount, setNavigationCount] = useState(0)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
+    try { return window.localStorage.getItem('umc-handoff-sidebar') === 'open' } catch { return false }
+  })
   const animateOverview = useRef(true)
+
+  const toggleSidebar = () => {
+    const next = !isSidebarOpen
+    setIsSidebarOpen(next)
+    try { window.localStorage.setItem('umc-handoff-sidebar', next ? 'open' : 'closed') } catch { /* Keep the toggle usable without storage. */ }
+  }
 
   useEffect(() => {
     if (activeChapter) animateOverview.current = false
@@ -37,9 +46,9 @@ export default function App() {
   }, [navigationCount])
 
   return (
-    <div className="app-shell" id="top">
+    <div className={`app-shell${isSidebarOpen ? '' : ' sidebar-collapsed'}`} id="top">
       <a className="skip-link" href="#main-content" onClick={(event) => { event.preventDefault(); document.getElementById('main-content')?.focus() }}>본문으로 바로가기</a>
-      <aside className="sidebar" aria-label="서비스 기획 목차">
+      <aside className="sidebar" id="chapter-sidebar" aria-label="서비스 기획 목차">
         <a className="brand" href="#top" aria-label="UMC App 인수인계 첫 화면">
           <img src="/umc-app-icon.png" width="42" height="42" alt="" />
           <span>
@@ -83,7 +92,12 @@ export default function App() {
         </header>
 
         <div className="utility-bar">
-          <span>UMC App <i aria-hidden="true">/</i> 서비스 기획 인수인계</span>
+          <div className="utility-leading">
+            <button className="sidebar-toggle" type="button" onClick={toggleSidebar} aria-controls="chapter-sidebar" aria-expanded={isSidebarOpen}>
+              <span aria-hidden="true">{isSidebarOpen ? '←' : '☰'}</span>{isSidebarOpen ? '목차 접기' : '목차 열기'}
+            </button>
+            <span>UMC App <i aria-hidden="true">/</i> 서비스 기획 인수인계</span>
+          </div>
           <span className="utility-status">서비스 기획 · 내부용</span>
         </div>
 
