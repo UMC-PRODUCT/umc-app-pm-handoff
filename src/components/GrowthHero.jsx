@@ -33,7 +33,7 @@ export default function GrowthHero({ animate }) {
             <div className="product-face">
               <span className="product-wordmark">UMC App</span>
               <img src="/umc-app-icon.png" width="150" height="150" alt="" />
-              <span className="product-signature">UMC PRODUCT TEAM</span>
+              <span className="product-signature">UMC PRODUCT</span>
               <div className="product-sheen" />
             </div>
           </div>
