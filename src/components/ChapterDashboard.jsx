@@ -27,8 +27,13 @@ export default function ChapterDashboard({ chapter, chapters }) {
                 <div className="topic-title"><span className="topic-number">{String(topicIndex + 1).padStart(2, '0')}</span><h3>{topic}</h3></div>
                 {detail && <div className="topic-detail">
                   <p>{detail.body}</p>
+                  {detail.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                   {detail.points?.length > 0 && <ul className="detail-points">{detail.points.map((point) => <li key={point}>{point}</li>)}</ul>}
-                  {detail.groups?.length > 0 && <div className="detail-groups">{detail.groups.map((group) => <section key={group.title}><h4>{group.title}</h4><ul>{group.points.map((point) => <li key={point}>{point}</li>)}</ul></section>)}</div>}
+                  {detail.groups?.length > 0 && <div className="detail-groups">{detail.groups.map((group) => <section key={group.title}>
+                    <h4>{group.title}</h4>
+                    {group.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                    {group.points?.length > 0 && <ul>{group.points.map((point) => <li key={point}>{point}</li>)}</ul>}
+                  </section>)}</div>}
                   {chapter.id === 'chapter-05' && screenCaptures[topicIndex] && <section className="capture-section" aria-label={`${topic} 화면 캡처`}>
                     <h4>화면 캡처</h4>
                     {screenCaptures[topicIndex].map((section) => <div className="capture-group" key={section.title}>

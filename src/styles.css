@@ -93,6 +93,8 @@ main { min-height: calc(100vh - 116px); outline: none; }
 .detail-groups { display: grid; gap: 18px; margin-top: 22px; }
 .detail-groups section { padding-top: 16px; border-top: 1px solid #e4e9e2; }
 .detail-groups h4 { margin: 0 0 8px; color: #263a2b; font-size: 14px; }
+.detail-groups p { margin: 0 0 14px; font-size: 15px; }
+.detail-groups p:last-child { margin-bottom: 0; }
 .detail-groups ul { display: grid; gap: 6px; margin: 0; padding-left: 20px; }
 .capture-section { margin-top: 28px; padding-top: 23px; border-top: 1px solid #dce4dc; }
 .capture-section > h4 { margin: 0 0 18px; color: #263a2b; font-size: 15px; }
