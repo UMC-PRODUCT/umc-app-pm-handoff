@@ -1,10 +1,13 @@
 // Console figures transcribed from the images supplied on 2026-09-24.
 // Each source keeps its own reporting window; missing values are not zeroes.
 export const androidMetrics = [
-  { label: '기기 노출수', value: 172, change: 132 },
-  { label: '기기 획득 수', value: 96, change: 405 },
-  { label: '처음 실행한 기기 수', value: 94, change: 31 },
-  { label: '월간 활성 기기', value: 207, change: 218 },
+  { label: '사용자 획득', value: 3.43, unit: '명', average: true, change: '+540%' },
+  { label: '총 설치 수', value: 89, unit: '건', average: false, change: '−115건' },
+  { label: '활성 기기 수', value: 155, unit: '대', average: true, change: '+13%' },
+  { label: '사용자층 성장률', value: 15.2, unit: '%', average: true, change: '+16.7%p' },
+  { label: '총 사용자층 규모', value: 148, unit: '명', average: true, change: '+15%' },
+  { label: '스토어 등록정보 방문자', value: 3.75, unit: '명', average: true, change: '+950%' },
+  { label: '스토어 등록정보 획득', value: 3, unit: '명', average: true, change: '>+999%' },
 ]
 
 export const downloadSources = [

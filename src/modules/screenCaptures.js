@@ -8,6 +8,7 @@ const byNumber = new Map(images.map((image) => [image.number, image]))
 
 const groups = {
   0: [
+    ['진입 스플래시 · Liquid Glass', [58, 59]],
     ['로그인·계정', [1, 48, 49, 50]],
   ],
   1: [

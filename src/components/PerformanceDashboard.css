@@ -21,6 +21,9 @@
 .android-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 0; }
 .android-metrics > div { padding: 18px 0; border-top: 2px solid #36664a; }
 .android-metrics dt { font-size: 13px; color: #506254; }
+.android-metrics dt small { display: block; margin-top: 6px; font-size: 10px; }
+.android-charts { margin-top: 28px; }
+.android-metrics .metric-decrease { color: #9b4b31; }
 .android-metrics dd { margin: 16px 0 12px; font-size: 38px; font-weight: 600; letter-spacing: -.04em; }
 .android-metrics dd small { margin-left: 4px; font-size: 13px; font-weight: 450; }
 .metric-change { color: #246342; font-size: 14px; font-weight: 700; }
