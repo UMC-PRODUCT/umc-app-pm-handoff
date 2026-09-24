@@ -18,19 +18,23 @@ export default function PerformanceDashboard() {
 
     <div className="performance-highlights">
       <div><span>iOS · 확인된 경로의 다운로드</span><strong>{downloadTotal.toLocaleString('ko-KR')}<small>건</small></strong><p>03.10–09.20 · 신규 사용자 수와 다름</p></div>
-      <div><span>Android · 월간 활성 기기</span><strong>207<small>대</small></strong><p>08.27–09.23 표시 · 증감 +218%</p></div>
+      <div><span>Android · 활성 기기 수 평균</span><strong>155<small>대</small></strong><p>08.27–09.23 · 최근 28일 · 증감 +13%</p></div>
       <div><span>iOS · 검색 경로 다운로드 비중</span><strong>{downloadShare(773)}<small>%</small></strong><p>수치가 표시된 4개 경로 합계 기준</p></div>
     </div>
 
     <section className="performance-block" aria-labelledby="android-title">
-      <header className="metric-section-title"><div><p className="metric-eyebrow">01 / ANDROID</p><h3 id="android-title">최근 유입과 활성 기기</h3></div><span className="metric-period">2026.08.27–09.23</span></header>
-      <dl className="android-metrics">{androidMetrics.map((metric) => <div key={metric.label}><dt>{metric.label}</dt><dd>{metric.value}<small>대</small></dd><span className="metric-change">+{metric.change}% <small>화면 표시 증감</small></span></div>)}</dl>
-      <p className="metric-note">네 지표 모두 증가로 표시됩니다. 증감의 비교 기간은 자료에 보이지 않으며, 각 지표의 집계 대상도 달라 단계별 전환율로 계산하지 않습니다.</p>
+      <header className="metric-section-title"><div><p className="metric-eyebrow">01 / ANDROID</p><h3 id="android-title">최근 28일의 유입과 이용</h3></div><span className="metric-period">2026.08.27–09.23 · 최근 28일</span></header>
+      <dl className="android-metrics">{androidMetrics.map((metric) => <div key={metric.label}><dt>{metric.label}{metric.average && <small>평균</small>}</dt><dd>{metric.value}<small>{metric.unit}</small></dd><span className={`metric-change${metric.change.startsWith('−') ? ' metric-decrease' : ''}`}>{metric.change} <small>화면 표시 증감</small></span></div>)}</dl>
+      <p className="metric-note">총 설치 수 89건에는 평균 표시가 없으며, 증감 −115는 건수입니다. 성장률의 +16.7%p는 퍼센트포인트 변화이고, 스토어 획득의 &gt;+999%는 999% 초과를 뜻합니다. 평균값을 합산하거나 기간 누적으로 환산하지 않습니다. 증감 비교 기간과 평균의 집계 단위는 확인이 필요합니다.</p>
+      <div className="quality-grid android-charts">
+        <figure className="metric-figure"><figcaption><h4>스토어 등록정보 방문과 획득</h4><p>콘솔 표시 평균 · 막대 기준 0–4명</p></figcaption><BarChart items={androidMetrics.slice(5)} maximum={4} unit="명" decimals={2} /><p className="metric-note">방문자와 획득은 각각의 평균입니다. 두 값을 합산하거나 나누어 전환율을 계산하지 않습니다.</p></figure>
+        <figure className="metric-figure"><figcaption><h4>사용자층 성장률</h4><p>콘솔 표시 평균 · 막대 기준 0–100%</p></figcaption><BarChart items={[androidMetrics[3]]} maximum={100} unit="%" decimals={1} /><p className="metric-insight">평균 성장률은 15.2%, 표시 증감은 +16.7%p입니다. 유입 지표 증가와 총 설치 수 감소가 함께 나타나므로, 다음 PM은 지표 정의와 비교 기간을 맞춰 원본을 확인합니다.</p></figure>
+      </div>
       <div className="release-record">
-        <div><span className="metric-eyebrow">배포 현황</span><h4>버전 3.4.0</h4><p>09.16 오전 8:10 출시 표시</p></div>
+        <div><span className="metric-eyebrow">별도 자료 · 버전별 배포 현황</span><h4>버전 3.4.0</h4><p>09.16 오전 8:10 출시 표시</p></div>
         <dl><div><dt>출시율</dt><dd>100<small>%</small></dd></div><div><dt>총 출시 버전 설치 수</dt><dd>122</dd></div><div><dt>앱 설치</dt><dd>199</dd></div></dl>
         <div className="release-adoption"><div><span>설치한 사용자 비율¹</span><strong>61.3%</strong></div><meter min="0" max="100" value="61.3" aria-label="설치한 사용자 비율 61.3%">61.3%</meter></div>
-        <p className="metric-note">¹ 원 화면의 ‘설치한 사용자 수’에 표시된 비율입니다. 출시율 100%는 배포 범위이며 전체 사용자의 업데이트 완료를 뜻하지 않습니다. 이 화면의 집계 기간은 표시되지 않았습니다.</p>
+        <p className="metric-note">¹ 원 화면의 ‘설치한 사용자 수’에 표시된 비율입니다. 출시율 100%는 배포 범위이며 전체 사용자의 업데이트 완료를 뜻하지 않습니다. 이 화면의 집계 기간은 표시되지 않았습니다. 설치 199·122는 별도 배포 화면의 값이며, 위 최근 28일 총 설치 수 89건과 합산하거나 같은 기준으로 비교하지 않습니다.</p>
       </div>
     </section>
 
@@ -73,6 +77,6 @@ export default function PerformanceDashboard() {
       </div>
     </section>
 
-    <details className="metric-reading-guide"><summary>집계 기준과 아직 확인할 수 없는 것</summary><ul><li>문서 기록 기간은 2026.03.10–09.24이며, Android 유입 화면은 08.27–09.23, 기존 iOS 경로별 화면은 03.10–09.20입니다. 추가 업데이트·노출·전환율 자료는 2025.03.10–2026.09.20, 추가 충돌 상세는 03.10–09.20(연도 미표시)입니다. 기간 차이를 임의 수치로 채우지 않았습니다.</li><li>기기 수·설치 수·다운로드 수는 고유 사용자 수와 다릅니다. 플랫폼을 합친 MAU나 전체 가입자 수는 이 자료만으로 산출할 수 없습니다.</li><li>원본의 일별 숫자와 범례가 없는 추이는 선그래프로 재구성하지 않았습니다. 정확히 표시된 값만 막대와 표로 옮겼습니다.</li><li>유지율과 충돌은 옵트인 데이터로 전체 사용자를 대표한다고 단정할 수 없습니다.</li><li>사용자 만족도, 리뷰 내용, 문의 건수, 운영 업무 절감 시간은 이번 자료에 없습니다. 아래 인수인계 항목에서 별도로 수집합니다.</li></ul></details>
+    <details className="metric-reading-guide"><summary>집계 기준과 아직 확인할 수 없는 것</summary><ul><li>문서 기록 기간은 2026.03.10–09.24이며, Android KPI 화면은 2026.08.27–09.23(최근 28일), 기존 iOS 경로별 화면은 03.10–09.20입니다. 추가 업데이트·노출·전환율 자료는 2025.03.10–2026.09.20, 추가 충돌 상세는 03.10–09.20(연도 미표시)입니다. 기간 차이를 임의 수치로 채우지 않았습니다.</li><li>기기 수·설치 수·다운로드 수는 고유 사용자 수와 다릅니다. 플랫폼을 합친 MAU나 전체 가입자 수는 이 자료만으로 산출할 수 없습니다.</li><li>원본의 일별 숫자와 범례가 없는 추이는 선그래프로 재구성하지 않았습니다. 정확히 표시된 값만 막대와 표로 옮겼습니다.</li><li>유지율과 충돌은 옵트인 데이터로 전체 사용자를 대표한다고 단정할 수 없습니다.</li><li>사용자 만족도, 리뷰 내용, 문의 건수, 운영 업무 절감 시간은 이번 자료에 없습니다. 아래 인수인계 항목에서 별도로 수집합니다.</li></ul></details>
   </section>
 }

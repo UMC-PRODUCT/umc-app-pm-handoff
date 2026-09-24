@@ -1,6 +1,15 @@
 import assert from 'node:assert/strict'
 import { androidMetrics, downloadSources, downloadTotal, downloadShare, pageViews, iosSnapshots, versionCrashes, crashTotal, updateSources, updateTotal, impressionSources, impressionTotal, conversionSources } from '../src/modules/performance.js'
 
+assert.deepEqual(androidMetrics.map(({ label, value, unit, average, change }) => [label, value, unit, average, change]), [
+  ['사용자 획득', 3.43, '명', true, '+540%'],
+  ['총 설치 수', 89, '건', false, '−115건'],
+  ['활성 기기 수', 155, '대', true, '+13%'],
+  ['사용자층 성장률', 15.2, '%', true, '+16.7%p'],
+  ['총 사용자층 규모', 148, '명', true, '+15%'],
+  ['스토어 등록정보 방문자', 3.75, '명', true, '+950%'],
+  ['스토어 등록정보 획득', 3, '명', true, '>+999%'],
+], 'Android replacement screenshot: preserve averages, absolute changes, percentage points and the lower bound')
 assert.equal(downloadTotal, 1070, 'Download sum must match the four numeric source rows')
 assert.equal(downloadShare(773), '72.2')
 assert.equal(downloadShare(0), '0.0')
@@ -15,4 +24,4 @@ for (const rows of [androidMetrics, downloadSources, pageViews, versionCrashes, 
 }
 assert.equal(iosSnapshots.length, 6)
 assert(iosSnapshots.every(row => row.march && row.september && row.change))
-console.log('Performance data: totals, shares, chart values and snapshot fields verified.')
+console.log('Performance data: Android KPI values/units/averages/change bounds and existing iOS totals/shares verified.')
