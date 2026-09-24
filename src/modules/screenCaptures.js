@@ -1,14 +1,27 @@
-const images = Object.entries(import.meta.glob('../../app-capture/*.png', { eager: true, query: '?url', import: 'default' }))
-  .map(([file, src]) => {
-    const [, number, title] = file.match(/(\d+)_(.+)\.png$/) ?? []
-    return { number: Number(number), title, src }
-  })
+const androidTitles = {
+  '17': '활동 상단 탭',
+  '24': '프로필 활동 이력',
+  '35': '스레드 AI 분류',
+  '36': '내 QR 공유',
+  '37': '명함 교환 개발 중 안내',
+  '56': '서비스 점검 차단',
+  '58': '스플래시 로고',
+  '59': '로그인 진입',
+}
 
-const byNumber = new Map(images.map((image) => [image.number, image]))
+const images = Object.entries(import.meta.glob('../../app-capture/*/*.png', { eager: true, query: '?url', import: 'default' }))
+  .map(([file, src]) => {
+    const [, platform, id, number, title] = file.normalize('NFC').match(/\/(ios|android)\/((\d+)(?:-\d+)?)_(.+)\.png$/)
+    return {
+      id, number: Number(number), platform, src,
+      title: (platform === 'android' && androidTitles[id]) || title.replaceAll('_', ' · '),
+    }
+  })
+  .sort((a, b) => a.id.localeCompare(b.id, 'en', { numeric: true }))
 
 const groups = {
   0: [
-    ['진입 스플래시 · Liquid Glass', [58, 59]],
+    ['스플래시·로그인 진입', [58, 59]],
     ['로그인·계정', [1, 48, 49, 50]],
   ],
   1: [
@@ -35,18 +48,25 @@ const groups = {
     ['명함', [22, 36, 37]],
   ],
   8: [
-    ['강제 업데이트 안내', [56]],
+    ['업데이트·점검 안내', [56]],
   ],
 }
 
 export const captureCount = images.length
+export const capturePlatforms = [
+  { id: 'ios', label: 'iOS', width: 1206, height: 2622 },
+  { id: 'android', label: 'Android', width: 1080, height: 2424 },
+].map((platform) => ({ ...platform, count: images.filter((image) => image.platform === platform.id).length }))
 
 export const screenCaptures = Object.fromEntries(
   Object.entries(groups).map(([topicIndex, sections]) => [
     topicIndex,
     sections.map(([title, numbers]) => ({
       title,
-      images: numbers.map((number) => byNumber.get(number)),
+      platforms: capturePlatforms.map((platform) => ({
+        ...platform,
+        images: numbers.flatMap((number) => images.filter((image) => image.platform === platform.id && image.number === number)),
+      })),
     })),
   ]),
 )
