@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 export default function GrowthHero({ animate }) {
   const heroRef = useRef(null)
-  const [paused, setPaused] = useState(false)
 
   useEffect(() => {
     const hero = heroRef.current
@@ -14,12 +13,9 @@ export default function GrowthHero({ animate }) {
   }, [])
 
   return (
-    <header className={`growth-hero${animate ? ' hero-enter' : ''}`} ref={heroRef} data-paused={paused}>
+    <header className={`growth-hero${animate ? ' hero-enter' : ''}`} ref={heroRef}>
       <div className="hero-brandline">
         <span><img src="/umc-app-icon.png" width="32" height="32" alt="" />UMC App</span>
-        <button className="motion-toggle" type="button" onClick={() => setPaused(!paused)}>
-          {paused ? '모션 재생' : '모션 멈추기'}
-        </button>
       </div>
       <h1 className="growth-title">
         <span><span>Focus on Growth,</span></span>
