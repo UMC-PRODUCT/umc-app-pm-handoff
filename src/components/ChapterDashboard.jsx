@@ -1,4 +1,5 @@
 import { captureCount, screenCaptures } from '../modules/screenCaptures'
+import PerformanceDashboard from './PerformanceDashboard'
 
 export default function ChapterDashboard({ chapter, chapters }) {
   const index = chapters.findIndex((item) => item.id === chapter.id)
@@ -15,8 +16,9 @@ export default function ChapterDashboard({ chapter, chapters }) {
         <p className="chapter-status">2026.09.24 정리 <span aria-hidden="true">·</span> {chapter.topics.length}개 항목{chapter.id === 'chapter-05' && <> <span aria-hidden="true">·</span> {captureCount}장 화면 캡처</>}</p>
       </header>
 
+      {chapter.id === 'chapter-08' && <PerformanceDashboard />}
       <section className="chapter-content" aria-labelledby="topic-title">
-        <div className="section-heading"><div><h2 id="topic-title">이 장에서 다룰 내용</h2><p>서비스 동작을 설명하고, 결정이 필요한 부분은 따로 표시했습니다.</p></div></div>
+        <div className="section-heading"><div><h2 id="topic-title">{chapter.id === 'chapter-08' ? '다음 PM에게 이어갈 일' : '이 장에서 다룰 내용'}</h2><p>{chapter.id === 'chapter-08' ? '관찰한 성과와 조사할 문제를 구분하고, 후속 확인 항목을 남깁니다.' : '서비스 동작을 설명하고, 결정이 필요한 부분은 따로 표시했습니다.'}</p></div></div>
         <ol className="topic-list">
           {chapter.topics.map((topic, topicIndex) => {
             const detail = chapter.details?.[topicIndex]
