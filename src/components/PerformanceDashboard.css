@@ -73,6 +73,11 @@
 .retention-days { display: flex; justify-content: space-between; gap: 10px; margin: 24px 0; padding: 12px 0; border-block: 1px solid #dce4d7; color: #4d6954; font-size: 12px; }
 .crash-record .metric-bar-track span { background: #987457; }
 .metric-action { display: block; margin-top: 18px; color: #42604a; font-size: 12px; line-height: 1.7; }
+.longterm-totals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 24px 0 32px; padding: 22px 0; border-block: 1px solid #dce4dc; }
+.longterm-totals dt { color: #506254; font-size: 12px; }
+.longterm-totals dd { margin: 12px 0 0; color: #305b3e; font-size: clamp(30px, 4vw, 42px); font-weight: 600; letter-spacing: -.04em; }
+.longterm-totals dd small { margin-left: 6px; font-size: 13px; }
+.conversion-record { margin-top: 32px; padding-top: 28px; border-top: 1px solid #dce4dc; }
 .metric-reading-guide { margin-top: 24px; border-bottom: 1px solid #dce4dc; font-size: 13px; }
 .metric-reading-guide summary { padding: 18px 0; color: #42604a; cursor: pointer; font-weight: 650; }
 .metric-reading-guide ul { display: grid; gap: 10px; padding-left: 20px; margin: 0 0 24px; color: #637066; line-height: 1.8; }
