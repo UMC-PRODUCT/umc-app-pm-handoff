@@ -339,6 +339,9 @@ main { min-height: calc(100vh - 116px); outline: none; }
 .extension-complications span { padding: 6px 10px; border-left: 2px solid #9caf9f; background: #f3f6f1; }
 .extension-return { display: grid; gap: 12px; margin-top: 24px; padding: 18px; border: 1px solid #b9cdbd; font-size: 13px; line-height: 1.8; }
 .extension-return b { margin: 0 8px; color: #68876f; }
+.calendar-branches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.calendar-steps { padding-left: 20px; font-size: 13px; line-height: 1.8; }
+.calendar-steps li + li { margin-top: 8px; }
 .permissions-separate { border-left: 3px solid #899388; padding: 10px 14px; font-size: 13px; }
 .permissions-separate strong { display: block; margin-bottom: 4px; }
 .permissions-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; list-style: none; margin: 26px 0; padding: 0; }
