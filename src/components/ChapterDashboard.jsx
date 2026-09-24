@@ -1,5 +1,8 @@
 import { captureCount, capturePlatforms, screenCaptures } from '../modules/screenCaptures'
 import PerformanceDashboard from './PerformanceDashboard'
+import RolePermissions from './RolePermissions'
+import ScreenStructure from './ScreenStructure'
+import AppExtensions from './AppExtensions'
 
 export default function ChapterDashboard({ chapter, chapters }) {
   const index = chapters.findIndex((item) => item.id === chapter.id)
@@ -17,8 +20,7 @@ export default function ChapterDashboard({ chapter, chapters }) {
       </header>
 
       {chapter.id === 'chapter-08' && <PerformanceDashboard />}
-      <section className="chapter-content" aria-labelledby="topic-title">
-        <div className="section-heading"><div><h2 id="topic-title">{chapter.sectionTitle ?? (chapter.id === 'chapter-08' ? '다음 PM에게 이어갈 일' : '이 장에서 다룰 내용')}</h2><p>{chapter.sectionDescription ?? (chapter.id === 'chapter-08' ? '관찰한 성과와 조사할 문제를 구분하고, 후속 확인 항목을 남깁니다.' : '서비스 동작을 설명하고, 결정이 필요한 부분은 따로 표시했습니다.')}</p></div></div>
+      <section className="chapter-content" aria-labelledby="chapter-title">
         <ol className="topic-list">
           {chapter.topics.map((topic, topicIndex) => {
             const detail = chapter.details?.[topicIndex]
@@ -27,6 +29,9 @@ export default function ChapterDashboard({ chapter, chapters }) {
                 <div className="topic-title"><span className="topic-number">{String(topicIndex + 1).padStart(2, '0')}</span><h3>{topic}</h3></div>
                 {detail && <div className="topic-detail">
                   <p>{detail.body}</p>
+                  {chapter.id === 'chapter-03' && topicIndex === 1 && <ScreenStructure />}
+                  {chapter.id === 'chapter-03' && topicIndex === 2 && <RolePermissions />}
+                  {chapter.id === 'chapter-03' && topicIndex === 3 && <AppExtensions />}
                   {detail.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                   {detail.points?.length > 0 && <ul className="detail-points">{detail.points.map((point) => <li key={point}>{point}</li>)}</ul>}
                   {detail.groups?.length > 0 && <div className="detail-groups">{detail.groups.map((group) => <section key={group.title}>
