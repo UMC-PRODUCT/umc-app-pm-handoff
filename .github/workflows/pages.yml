@@ -1,5 +1,7 @@
 name: Deploy protected handoff
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,7 +23,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build && npm run test:access
+      - run: npm run build && npm run test:access && node scripts/check-performance.mjs
         env:
           HANDOFF_PASSWORD: ${{ secrets.HANDOFF_PASSWORD }}
       - uses: actions/configure-pages@v5
