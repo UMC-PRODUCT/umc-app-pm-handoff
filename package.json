@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
+    "build": "vite build --outDir .sites-runtime/client && node scripts/build-protected-site.mjs",
+    "test:access": "node scripts/check-access.mjs",
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {

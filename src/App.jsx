@@ -107,7 +107,10 @@ export default function App() {
             : <OverviewDashboard chapters={chapters} animate={animateOverview.current} />}
         </main>
 
-        <footer className="site-footer"><span>UMC App 서비스 기획 인수인계</span><span>2026.09.24 정리 · PM 확인 필요 항목 포함</span></footer>
+        <footer className="site-footer">
+          <div className="footer-credits"><span>UMC App 서비스 기획 인수인계</span><span>© 2026 제옹</span></div>
+          <div className="footer-reference"><span>UMC PRODUCT Design System을 참고하여 제작했습니다.</span><span>2026.09.24 정리 · PM 확인 필요 항목 포함</span></div>
+        </footer>
       </div>
     </div>
   )
