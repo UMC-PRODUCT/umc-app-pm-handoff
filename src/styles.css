@@ -385,3 +385,5 @@ main { min-height: calc(100vh - 116px); outline: none; }
 .priority-core { color: #fff; background: #28543d; border-color: #28543d; }
 .priority-main { color: #30593d; background: #e6efe4; border-color: #bdcfb9; }
 .priority-extra { color: #57625b; background: #fff; border-color: #c6cec7; }
+
+.chapter-content > .capture-reading-guide { margin: 0 0 28px; }

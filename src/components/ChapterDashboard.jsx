@@ -4,6 +4,7 @@ import RolePermissions from './RolePermissions'
 import ScreenStructure from './ScreenStructure'
 import AppExtensions from './AppExtensions'
 import NoticeMarkdownGuide from './NoticeMarkdownGuide'
+import CardExchangeDiagram from './CardExchangeDiagram'
 
 const priorities = {
   core: { label: '핵심', description: '기본 이용과 UMC App의 본래 목적에 꼭 필요한 기능' },
@@ -32,6 +33,7 @@ export default function ChapterDashboard({ chapter, chapters }) {
 
       {chapter.id === 'chapter-08' && <PerformanceDashboard />}
       <section className="chapter-content" aria-labelledby="chapter-title">
+        {chapter.id === 'chapter-05' && chapter.note && <div className="chapter-note capture-reading-guide"><h3>{chapter.note.title}</h3><p>{chapter.note.body}</p></div>}
         {chapter.id === 'chapter-05' && <aside className="priority-guide" aria-labelledby="priority-guide-title">
           <h2 id="priority-guide-title">기능 중요도 <small>검토용 제안</small></h2>
           <ul>{Object.entries(priorities).map(([priority, { description }]) => <li key={priority}><PriorityBadge priority={priority} /><span>{description}</span></li>)}</ul>
@@ -53,6 +55,7 @@ export default function ChapterDashboard({ chapter, chapters }) {
                   {detail.groups?.length > 0 && <div className="detail-groups">{detail.groups.map((group) => <section key={group.title}>
                     <h4>{group.title}{group.priority && <PriorityBadge priority={group.priority} />}</h4>
                     {group.visual === 'notice-markdown' && <NoticeMarkdownGuide />}
+                    {group.visual === 'card-exchange' && <CardExchangeDiagram />}
                     {group.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                     {group.points?.length > 0 && <ul>{group.points.map((point) => <li key={point}>{point}</li>)}</ul>}
                   </section>)}</div>}
@@ -75,7 +78,7 @@ export default function ChapterDashboard({ chapter, chapters }) {
             )
           })}
         </ol>
-        {chapter.note && <div className="chapter-note"><h3>{chapter.note.title}</h3><p>{chapter.note.body}</p></div>}
+        {chapter.id !== 'chapter-05' && chapter.note && <div className="chapter-note"><h3>{chapter.note.title}</h3><p>{chapter.note.body}</p></div>}
       </section>
 
       <nav className="chapter-pagination" aria-label="장 이동">
