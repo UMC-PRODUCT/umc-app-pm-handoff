@@ -1,3 +1,11 @@
+const sourceBase = 'https://github.com/UMC-PRODUCT/Big-Dipper-iOS/blob/43a051fa5828d3cbca24facad1c58f3c9ee737be/'
+
+function sourceUrl(source) {
+  if (source.startsWith('https://')) return source
+  const match = source.match(/^(.*?):(\d+)$/)
+  return `${sourceBase}${encodeURI(match?.[1] ?? source)}${match ? `#L${match[2]}` : ''}`
+}
+
 export default function ChapterDashboard({ chapter, chapters }) {
   const index = chapters.findIndex((item) => item.id === chapter.id)
   const previous = chapters[index - 1]
@@ -10,15 +18,27 @@ export default function ChapterDashboard({ chapter, chapters }) {
         <p className="page-context">{chapter.number} / {String(chapters.length).padStart(2, '0')} · {chapter.label}</p>
         <h1 id="chapter-title">{chapter.title}</h1>
         <p className="page-description">{chapter.summary}</p>
-        <p className="chapter-status">목차 초안 <span aria-hidden="true">·</span> {chapter.topics.length}개 항목</p>
+        <p className="chapter-status">iOS 코드 기준 2026.09.24 <span aria-hidden="true">·</span> {chapter.topics.length}개 항목</p>
       </header>
 
       <section className="chapter-content" aria-labelledby="topic-title">
-        <div className="section-heading"><div><h2 id="topic-title">이 장에서 다룰 내용</h2><p>실제 기획 의도와 화면 동작은 자료를 확인하며 기록합니다.</p></div></div>
+        <div className="section-heading"><div><h2 id="topic-title">이 장에서 다룰 내용</h2><p>현재 구현을 기준으로 정리하고, 판단이 필요한 부분은 따로 표시했습니다.</p></div></div>
         <ol className="topic-list">
-          {chapter.topics.map((topic, topicIndex) => (
-            <li key={topic}><span className="topic-number">{String(topicIndex + 1).padStart(2, '0')}</span><h3>{topic}</h3></li>
-          ))}
+          {chapter.topics.map((topic, topicIndex) => {
+            const detail = chapter.details?.[topicIndex]
+            return (
+              <li key={topic}>
+                <div className="topic-title"><span className="topic-number">{String(topicIndex + 1).padStart(2, '0')}</span><h3>{topic}</h3></div>
+                {detail && <div className="topic-detail">
+                  <p>{detail.body}</p>
+                  {detail.points?.length > 0 && <ul className="detail-points">{detail.points.map((point) => <li key={point}>{point}</li>)}</ul>}
+                  {detail.groups?.length > 0 && <div className="detail-groups">{detail.groups.map((group) => <section key={group.title}><h4>{group.title}</h4><ul>{group.points.map((point) => <li key={point}>{point}</li>)}</ul></section>)}</div>}
+                  {detail.questions?.length > 0 && <div className="detail-questions"><h4>PM 확인 필요</h4><ul>{detail.questions.map((question) => <li key={question}>{question}</li>)}</ul></div>}
+                  {detail.sources?.length > 0 && <details className="detail-sources"><summary>확인 근거 {detail.sources.length}개</summary><ul>{detail.sources.map((source) => <li key={source}><a href={sourceUrl(source)} target="_blank" rel="noreferrer">{source}</a></li>)}</ul></details>}
+                </div>}
+              </li>
+            )
+          })}
         </ol>
         {chapter.note && <div className="chapter-note"><h3>{chapter.note.title}</h3><p>{chapter.note.body}</p></div>}
       </section>

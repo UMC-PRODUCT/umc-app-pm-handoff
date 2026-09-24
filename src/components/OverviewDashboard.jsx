@@ -7,7 +7,7 @@ export default function OverviewDashboard({ chapters, animate }) {
         <div className="cover-copy">
           <p className="page-context">UMC App 서비스 기획</p>
           <h1>다음 PM을 위한<br /><span>인수인계 기록</span></h1>
-          <p className="page-description">서비스의 의도와 화면별 기능을 살펴보고, 남은 결정을 이어갈 수 있도록 정리합니다.</p>
+          <p className="page-description">서비스의 구조와 화면별 기능을 실제 iOS 구현에서 확인했습니다. 기획 의도와 운영 정책은 PM이 확인할 질문으로 남겼습니다.</p>
           <button className="cover-start" type="button" onClick={() => { const heading = document.getElementById('index-title'); heading?.scrollIntoView(); heading?.focus({ preventScroll: true }) }}>전체 목차 보기 <span aria-hidden="true">↓</span></button>
         </div>
         <nav className="cover-paths" aria-label="주요 내용 바로가기">
@@ -26,13 +26,13 @@ export default function OverviewDashboard({ chapters, animate }) {
         <dl className="document-facts">
           <div><dt>대상</dt><dd>다음 기수 PM · 운영진</dd></div>
           <div><dt>범위</dt><dd>UMC App 서비스 전체</dd></div>
-          <div><dt>현재 상태</dt><dd>목차 초안</dd></div>
+          <div><dt>현재 상태</dt><dd>코드 기반 초안 · PM 검토 중</dd></div>
         </dl>
       </header>
 
       <section className="index-section" aria-labelledby="index-title">
         <div className="section-heading">
-          <div><h2 id="index-title" tabIndex="-1">전체 목차</h2><p>각 장에서 다룰 내용을 한눈에 확인할 수 있습니다.</p></div>
+          <div><h2 id="index-title" tabIndex="-1">전체 목차</h2><p>각 항목에 구현 내용, 확인 근거, 다음 PM이 검토할 질문을 정리했습니다.</p></div>
           <span>{chapters.length}개 장 · {topicCount}개 항목</span>
         </div>
         <div className="index-list">

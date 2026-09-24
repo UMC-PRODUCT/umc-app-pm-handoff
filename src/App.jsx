@@ -64,7 +64,7 @@ export default function App() {
             ))}
           </ol>
         </nav>
-        <p className="sidebar-foot">내부 공유 문서 · 목차 초안</p>
+        <p className="sidebar-foot">내부 공유 문서 · PM 검토 중</p>
       </aside>
 
       <div className="workspace">
@@ -84,7 +84,7 @@ export default function App() {
 
         <div className="utility-bar">
           <span>UMC App <i aria-hidden="true">/</i> 서비스 기획 인수인계</span>
-          <span className="utility-status">목차 초안 · 내부용</span>
+          <span className="utility-status">iOS 구현 기준 · 내부용</span>
         </div>
 
         <main id="main-content" tabIndex="-1">
@@ -93,7 +93,7 @@ export default function App() {
             : <OverviewDashboard chapters={chapters} animate={animateOverview.current} />}
         </main>
 
-        <footer className="site-footer"><span>UMC App 서비스 기획 인수인계</span><span>기획 내용을 함께 채우는 중</span></footer>
+        <footer className="site-footer"><span>UMC App 서비스 기획 인수인계</span><span>2026.09.24 코드 기준 · PM 확인 필요 항목 포함</span></footer>
       </div>
     </div>
   )
