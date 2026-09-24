@@ -12,11 +12,11 @@ export default function ChapterDashboard({ chapter, chapters }) {
         <p className="page-context">{chapter.number} / {String(chapters.length).padStart(2, '0')} · {chapter.label}</p>
         <h1 id="chapter-title">{chapter.title}</h1>
         <p className="page-description">{chapter.summary}</p>
-        <p className="chapter-status">iOS 코드 기준 2026.09.24 <span aria-hidden="true">·</span> {chapter.topics.length}개 항목{chapter.id === 'chapter-05' && <> <span aria-hidden="true">·</span> {captureCount}장 화면 캡처</>}</p>
+        <p className="chapter-status">2026.09.24 정리 <span aria-hidden="true">·</span> {chapter.topics.length}개 항목{chapter.id === 'chapter-05' && <> <span aria-hidden="true">·</span> {captureCount}장 화면 캡처</>}</p>
       </header>
 
       <section className="chapter-content" aria-labelledby="topic-title">
-        <div className="section-heading"><div><h2 id="topic-title">이 장에서 다룰 내용</h2><p>현재 구현을 기준으로 정리하고, 판단이 필요한 부분은 따로 표시했습니다.</p></div></div>
+        <div className="section-heading"><div><h2 id="topic-title">이 장에서 다룰 내용</h2><p>서비스 동작을 설명하고, 결정이 필요한 부분은 따로 표시했습니다.</p></div></div>
         <ol className="topic-list">
           {chapter.topics.map((topic, topicIndex) => {
             const detail = chapter.details?.[topicIndex]

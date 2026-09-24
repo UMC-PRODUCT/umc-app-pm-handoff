@@ -22,14 +22,9 @@ export default {
         '공식 서비스 소개 문구와 이번 기수에서 가장 우선할 사용자 문제를 PM이 확정했나요?',
         '새 기수에 추가·제외할 핵심 기능의 우선순위는 무엇인가요?',
       ],
-      sources: [
-        'UMCApp/UMCApp/Sources/RootTab/RootTabView.swift:28',
-        'UMCApp/Features/Home/Presentation/Sources/Views/HomeView.swift:82',
-        'UMCApp/UMCApp/Sources/RootTab/RootTabView.swift:234',
-      ],
     },
     {
-      body: '앱 구조에서 확인되는 문제는 공지 확인, 일정 파악, 출석과 스터디 참여, 운영진 관리가 화면과 도구 사이에 흩어지면 사용자가 활동 맥락을 잃기 쉽다는 점입니다. 현재 구현은 이 흐름을 탭과 연결 진입으로 묶고 있습니다.',
+      body: '공지, 일정, 출석, 스터디가 흩어져 있으면 챌린저는 활동을 놓치기 쉽고 운영진은 확인과 후속 조치에 시간을 쓰게 됩니다. UMC App은 필요한 정보와 행동을 한곳에서 이어 볼 수 있도록 구성됩니다.',
       points: [
         '홈에서 최근 공지와 선택 날짜의 일정을 바로 확인하고 각각 상세 화면으로 이동할 수 있습니다.',
         '출석 관련 푸시를 누르면 활동 탭의 해당 세션을 펼치고, 앱이 켜져 있을 때 도착한 상태 변경은 화면에 전달합니다.',
@@ -39,46 +34,30 @@ export default {
         '기존 운영 도구에서 발생한 누락·중복·응답 지연의 실제 사례와 수치가 있나요?',
         '앱 도입 후에도 외부 도구에 남겨 둘 운영 절차는 무엇인가요?',
       ],
-      sources: [
-        'UMCApp/Features/Home/Presentation/Sources/Views/HomeView.swift:193',
-        'UMCApp/UMCApp/Sources/RootTab/RootTabView.swift:286',
-        'UMCApp/UMCApp/Sources/AppDelegate.swift:171',
-      ],
     },
     {
-      body: '서비스의 기본 이용자는 챌린저이며, 운영 권한을 가진 사용자는 역할에 따라 관리자 모드와 일부 관리 화면에 접근합니다. 동일인이 여러 역할을 가질 수 있으므로 단순한 이분법보다 역할·소속·대상 리소스를 함께 봐야 합니다.',
+      body: '서비스의 기본 이용자는 챌린저입니다. 운영진은 맡은 역할과 소속에 따라 관리자 모드와 관리 화면을 이용합니다. 한 사람이 여러 역할을 맡을 수 있어 화면별로 가능한 행동이 다릅니다.',
       points: [
-        '역할은 챌린저부터 학교·지부·중앙 운영진과 시스템 관리자까지 서버 역할값에 대응합니다.',
+        '역할은 챌린저, 학교·지부·중앙 운영진, 시스템 관리자로 나뉩니다.',
         '학교 기타 운영진 이상은 관리자 모드에 접근할 수 있고, 학교 파트장 이상은 운영진 공지 탭에 접근할 수 있습니다.',
-        '현재 세션에는 최고 권한 역할과 전체 역할 목록이 함께 보관되며 관리자 모드는 사용자가 전환합니다.',
+        '운영 권한이 있는 사용자는 활동 화면에서 챌린저 모드와 관리자 모드를 전환할 수 있습니다.',
         '가입만 끝나고 승인되지 않은 사용자는 메인 대신 승인 대기 화면에서 인증·문의·로그아웃·탈퇴 등의 제한된 행동만 할 수 있습니다.',
       ],
       questions: [
         '각 운영진 역할의 실제 담당 업무와 승인 주체를 기수별로 누가 관리하나요?',
-        '역할 변경·기수 종료·소속 이동 시 권한 회수의 서버 처리 시점은 언제인가요?',
-      ],
-      sources: [
-        'UMCApp/Core/Foundation/Sources/Enums/ManagementTeam.swift:23',
-        'UMCApp/Core/Foundation/Sources/Enums/ManagementTeam.swift:61',
-        'UMCApp/Core/Domain/Sources/Member/UserSessionManager.swift:27',
-        'UMCApp/Features/Auth/Presentation/Sources/Views/FailedVerificationUMC.swift:15',
+        '역할 변경·기수 종료·소속 이동 시 권한은 언제 바뀌고 사용자에게 어떻게 안내하나요?',
       ],
     },
     {
       body: '기능 설계 관점의 핵심 가치는 필요한 운영 정보를 놓치지 않고, 역할에 맞는 행동을 같은 앱에서 마칠 수 있게 하는 것입니다. 성공 여부는 실제 운영 데이터와 사용자 조사를 통해 별도로 확정해야 합니다.',
       points: [
         '홈은 공지·일정·활동 정보를 한 화면에 모으고, 공지는 상세로 연결합니다.',
-        '푸시 수신 이력을 앱 안의 알림 보관함에 저장하며, FCM 토큰은 회원 식별자가 확보된 뒤 서버에 등록합니다.',
-        '활동·프로젝트 같은 관리 행동은 역할 또는 개별 리소스 권한에 따라 노출·제한됩니다.',
+        '받은 알림은 앱의 알림 보관함에서 다시 확인할 수 있습니다.',
+        '활동·프로젝트 관리 행동은 역할과 대상별 권한에 따라 보여 주거나 제한합니다.',
       ],
       questions: [
         '성공 지표를 공지 확인률, 출석 처리 시간, 운영진 업무 시간, 주간 활성 사용자 중 무엇으로 잡을까요?',
         '현재 지표의 측정 도구·기준값·목표값·담당자는 누구인가요?',
-      ],
-      sources: [
-        'UMCApp/Features/Home/Presentation/Sources/Views/HomeView.swift:82',
-        'UMCApp/UMCApp/Sources/AppDelegate.swift:17',
-        'UMCApp/Core/Domain/Sources/Authorization/ResourcePermission.swift:36',
       ],
     },
   ],
