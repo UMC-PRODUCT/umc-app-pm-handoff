@@ -4,6 +4,7 @@ const button = form.querySelector('button')
 const status = document.querySelector('#status')
 const decode = value => Uint8Array.from(atob(value), char => char.charCodeAt(0))
 let encrypted
+button.disabled = false
 form.addEventListener('submit', async event => {
   event.preventDefault()
   if (button.disabled) return
