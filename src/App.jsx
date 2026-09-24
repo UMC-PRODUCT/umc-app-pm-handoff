@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { chapters } from './modules'
 import OverviewDashboard from './components/OverviewDashboard'
 import ChapterDashboard from './components/ChapterDashboard'
@@ -10,6 +10,11 @@ function currentChapter() {
 export default function App() {
   const [activeChapter, setActiveChapter] = useState(currentChapter)
   const [navigationCount, setNavigationCount] = useState(0)
+  const animateOverview = useRef(true)
+
+  useEffect(() => {
+    if (activeChapter) animateOverview.current = false
+  }, [activeChapter])
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -85,7 +90,7 @@ export default function App() {
         <main id="main-content" tabIndex="-1">
           {activeChapter
             ? <ChapterDashboard chapter={activeChapter} chapters={chapters} />
-            : <OverviewDashboard chapters={chapters} />}
+            : <OverviewDashboard chapters={chapters} animate={animateOverview.current} />}
         </main>
 
         <footer className="site-footer"><span>UMC App 서비스 기획 인수인계</span><span>기획 내용을 함께 채우는 중</span></footer>
