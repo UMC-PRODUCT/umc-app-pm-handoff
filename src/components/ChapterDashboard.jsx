@@ -1,4 +1,4 @@
-import { captureCount, screenCaptures } from '../modules/screenCaptures'
+import { captureCount, capturePlatforms, screenCaptures } from '../modules/screenCaptures'
 import PerformanceDashboard from './PerformanceDashboard'
 
 export default function ChapterDashboard({ chapter, chapters }) {
@@ -13,7 +13,7 @@ export default function ChapterDashboard({ chapter, chapters }) {
         <p className="page-context">{chapter.number} / {String(chapters.length).padStart(2, '0')} · {chapter.label}</p>
         <h1 id="chapter-title">{chapter.title}</h1>
         <p className="page-description">{chapter.summary}</p>
-        <p className="chapter-status">2026.09.24 정리 <span aria-hidden="true">·</span> {chapter.topics.length}개 항목{chapter.id === 'chapter-05' && <> <span aria-hidden="true">·</span> {captureCount}장 화면 캡처</>}</p>
+        <p className="chapter-status">2026.09.24 정리 <span aria-hidden="true">·</span> {chapter.topics.length}개 항목{chapter.id === 'chapter-05' && <> <span aria-hidden="true">·</span> {captureCount}장 화면 캡처 ({capturePlatforms.map((platform) => `${platform.label} ${platform.count}장`).join(' · ')})</>}</p>
       </header>
 
       {chapter.id === 'chapter-08' && <PerformanceDashboard />}
@@ -33,10 +33,13 @@ export default function ChapterDashboard({ chapter, chapters }) {
                     <h4>화면 캡처</h4>
                     {screenCaptures[topicIndex].map((section) => <div className="capture-group" key={section.title}>
                       <h5>{section.title}</h5>
-                      <div className="capture-grid">{section.images.map((image) => <a className="capture-card" href={image.src} target="_blank" rel="noreferrer" key={image.number} aria-label={`${image.title} 캡처 원본 보기`}>
-                        <span className="capture-image"><img src={image.src} alt={`${image.title} 화면`} width="1206" height="2622" loading="lazy" decoding="async" /></span>
-                        <span className="capture-caption"><small>{String(image.number).padStart(2, '0')}</small>{image.title}<span aria-hidden="true">↗</span></span>
-                      </a>)}</div>
+                      <div className="capture-platforms">{section.platforms.map((platform) => <section className="capture-platform" key={platform.id} aria-label={`${section.title} ${platform.label}`}>
+                        <h6>{platform.label}<span>{platform.images.length}장</span></h6>
+                        {platform.images.length ? <div className="capture-grid">{platform.images.map((image) => <a className="capture-card" href={image.src} target="_blank" rel="noreferrer" key={image.id} aria-label={`${platform.label} ${image.title} 캡처 원본 보기`}>
+                          <span className="capture-image"><img src={image.src} alt={`${platform.label} ${image.title} 화면`} width={platform.width} height={platform.height} loading="lazy" decoding="async" /></span>
+                          <span className="capture-caption"><small>{image.id}</small>{image.title}<span aria-hidden="true">↗</span></span>
+                        </a>)}</div> : <p className="capture-empty">제공된 {platform.label} 캡처가 없습니다.</p>}
+                      </section>)}</div>
                     </div>)}
                   </section>}
                   {detail.questions?.length > 0 && <div className="detail-questions"><h4>PM 확인 필요</h4><ul>{detail.questions.map((question) => <li key={question}>{question}</li>)}</ul></div>}

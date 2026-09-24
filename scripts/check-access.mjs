@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { readFile, readdir } from 'node:fs/promises'
-import { pbkdf2Sync, createDecipheriv } from 'node:crypto'
+import { pbkdf2Sync, createDecipheriv, createHash } from 'node:crypto'
 import { gunzipSync } from 'node:zlib'
 const bytes = await readFile('dist/document.enc')
 const password = process.env.HANDOFF_PASSWORD
@@ -16,8 +16,11 @@ const changed = Buffer.from(bytes); changed[40] ^= 1
 assert.throws(() => decrypt(password, changed))
 const files = decrypt(password)
 assert.ok(files['/index.html'])
-const captures = (await readdir('app-capture')).filter(path => /^\d{2}_.*\.png$/.test(path))
-assert.equal(Object.keys(files).filter(path => /\/\d{2}_.*\.png$/.test(path)).length, captures.length)
+const captures = (await readdir('app-capture', { recursive: true })).filter(path => /^(ios|android)\/\d{2}(?:-\d+)?_.*\.png$/.test(path))
+assert.ok(captures.some(path => path.startsWith('ios/')) && captures.some(path => path.startsWith('android/')))
+const hash = bytes => createHash('sha256').update(bytes).digest('hex')
+const publishedImages = new Set(Object.values(files).filter(file => file.type === 'image/png').map(file => hash(Buffer.from(file.data, 'base64'))))
+for (const path of captures) assert.ok(publishedImages.has(hash(await readFile(`app-capture/${path}`))), `Missing encrypted capture: ${path}`)
 for (const [path, file] of Object.entries(files)) assert.deepEqual(Buffer.from(file.data, 'base64'), await readFile(`.sites-runtime/client${path}`))
 assert.deepEqual((await readdir('dist')).sort(), ['.openai', 'document.enc', 'index.html', 'unlock.js'])
 for (const path of ['dist/index.html', 'dist/unlock.js']) {
