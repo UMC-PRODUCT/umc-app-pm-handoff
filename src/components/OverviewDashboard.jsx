@@ -32,7 +32,7 @@ export default function OverviewDashboard({ chapters, animate }) {
 
       <section className="index-section" aria-labelledby="index-title">
         <div className="section-heading">
-          <div><h2 id="index-title" tabIndex="-1">전체 목차</h2><p>각 항목에 구현 내용, 확인 근거, 다음 PM이 검토할 질문을 정리했습니다.</p></div>
+          <div><h2 id="index-title" tabIndex="-1">전체 목차</h2><p>각 항목에 구현 내용과 다음 PM이 검토할 질문을 정리했습니다.</p></div>
           <span>{chapters.length}개 장 · {topicCount}개 항목</span>
         </div>
         <div className="index-list">

@@ -1,11 +1,3 @@
-const sourceBase = 'https://github.com/UMC-PRODUCT/Big-Dipper-iOS/blob/43a051fa5828d3cbca24facad1c58f3c9ee737be/'
-
-function sourceUrl(source) {
-  if (source.startsWith('https://')) return source
-  const match = source.match(/^(.*?):(\d+)$/)
-  return `${sourceBase}${encodeURI(match?.[1] ?? source)}${match ? `#L${match[2]}` : ''}`
-}
-
 export default function ChapterDashboard({ chapter, chapters }) {
   const index = chapters.findIndex((item) => item.id === chapter.id)
   const previous = chapters[index - 1]
@@ -34,7 +26,6 @@ export default function ChapterDashboard({ chapter, chapters }) {
                   {detail.points?.length > 0 && <ul className="detail-points">{detail.points.map((point) => <li key={point}>{point}</li>)}</ul>}
                   {detail.groups?.length > 0 && <div className="detail-groups">{detail.groups.map((group) => <section key={group.title}><h4>{group.title}</h4><ul>{group.points.map((point) => <li key={point}>{point}</li>)}</ul></section>)}</div>}
                   {detail.questions?.length > 0 && <div className="detail-questions"><h4>PM 확인 필요</h4><ul>{detail.questions.map((question) => <li key={question}>{question}</li>)}</ul></div>}
-                  {detail.sources?.length > 0 && <details className="detail-sources"><summary>확인 근거 {detail.sources.length}개</summary><ul>{detail.sources.map((source) => <li key={source}><a href={sourceUrl(source)} target="_blank" rel="noreferrer">{source}</a></li>)}</ul></details>}
                 </div>}
               </li>
             )

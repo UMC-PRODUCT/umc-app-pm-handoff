@@ -112,10 +112,6 @@ main { min-height: calc(100vh - 116px); outline: none; }
 .detail-groups ul { display: grid; gap: 6px; margin: 0; padding-left: 20px; }
 .detail-questions { margin-top: 22px; padding: 18px 21px; border-left: 3px solid #87aa83; background: #f6f8f4; }
 .detail-questions h4 { margin: 0 0 9px; color: #2b553a; font-size: 13px; }
-.detail-sources { margin-top: 18px; border-top: 1px solid #e4e9e2; }
-.detail-sources summary { width: fit-content; min-height: 44px; padding: 11px 0; color: #58745f; font-size: 12px; font-weight: 650; cursor: pointer; }
-.detail-sources ul { display: grid; gap: 6px; margin: 0 0 10px; padding-left: 19px; font-size: 12px; overflow-wrap: anywhere; }
-.detail-sources a:hover { color: #1d6641; }
 .chapter-note { max-width: 760px; margin-top: 40px; padding: 22px 24px; border-left: 3px solid #45765a; background: #f4f7f3; }
 .chapter-note h3 { margin: 0 0 8px; font-size: 16px; }
 .chapter-note p { margin: 0; color: #5e6a61; font-size: 14px; line-height: 1.8; word-break: keep-all; }
