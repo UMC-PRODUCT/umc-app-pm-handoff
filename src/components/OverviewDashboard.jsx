@@ -27,7 +27,7 @@ export default function OverviewDashboard({ chapters, animate }) {
         <dl className="document-facts">
           <div><dt>대상</dt><dd>다음 기수 PM · 운영진</dd></div>
           <div><dt>범위</dt><dd>UMC App 서비스 전체</dd></div>
-          <div><dt>현재 상태</dt><dd>PM 검토 중</dd></div>
+          <div><dt>현재 상태</dt><dd>제옹 1차 검토 중</dd></div>
         </dl>
       </section>
 

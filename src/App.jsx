@@ -73,7 +73,7 @@ export default function App() {
             ))}
           </ol>
         </nav>
-        <p className="sidebar-foot">내부 공유 문서 · PM 검토 중</p>
+        <p className="sidebar-foot">내부 공유 문서 · 제옹 1차 검토 중</p>
       </aside>
 
       <div className="workspace">
