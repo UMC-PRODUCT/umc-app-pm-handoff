@@ -14,6 +14,7 @@ export default function OverviewDashboard({ chapters, animate }) {
         </div>
         <nav className="handoff-paths" aria-label="주요 내용 바로가기">
           {[
+            [chapters[0], '이 기록을 읽기 전에'],
             [chapters[1], '서비스를 이해하려면'],
             [chapters[4], '화면 기능을 찾으려면'],
             [chapters[8], '다음 결정을 준비하려면'],
