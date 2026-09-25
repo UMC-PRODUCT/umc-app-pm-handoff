@@ -9,7 +9,7 @@ export default function OverviewDashboard({ chapters, animate }) {
       <section className="handoff-intro" aria-labelledby="handoff-title">
         <div className="handoff-intro-copy">
           <p className="page-context">UMC App 서비스 기획</p>
-          <h2 id="handoff-title">UMC PRODUCT를 위한<br />인수인계 기록.</h2>
+          <h2 id="handoff-title">UMC PRODUCT를 위한<br />App 인수인계 기록.</h2>
           <p>제가 수기 노트에 남긴 기획 의도와 고민,<br />그리고 UMC App의 기능과 운영 정책을 함께 정리했습니다.</p>
         </div>
         <nav className="handoff-paths" aria-label="주요 내용 바로가기">
@@ -28,13 +28,13 @@ export default function OverviewDashboard({ chapters, animate }) {
         <dl className="document-facts">
           <div><dt>대상</dt><dd>PM을 포함한 UMC PRODUCT 구성원 전체</dd></div>
           <div><dt>범위</dt><dd>UMC App 서비스 전체</dd></div>
-          <div><dt>현재 상태</dt><dd>제옹 1차 검토 중</dd></div>
+          <div><dt>현재 상태</dt><dd>작성 완료</dd></div>
         </dl>
       </section>
 
       <section className="index-section" aria-labelledby="index-title">
         <div className="section-heading">
-          <div><h2 id="index-title" tabIndex="-1">전체 목차</h2><p>각 항목에 서비스 동작과 다음 PM이 검토할 질문을 정리했습니다.</p></div>
+          <div><h2 id="index-title" tabIndex="-1">전체 목차</h2><p>기획 배경부터 실제 기능, 성과와 남은 과제까지 장별로 살펴볼 수 있습니다.</p></div>
           <span>{chapters.length}개 장 · {topicCount}개 항목</span>
         </div>
         <div className="index-list">

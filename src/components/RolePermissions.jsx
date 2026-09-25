@@ -17,6 +17,12 @@ export default function RolePermissions() {
   return (
     <figure className="permissions-map" aria-labelledby="permissions-caption">
       <figcaption id="permissions-caption"><span>역할과 권한 한눈에 보기</span><p>조직에서 맡은 역할에 대상과 행동의 조건을 더해 권한을 판단합니다.</p></figcaption>
+      <div className="generation-map" aria-label="기수 값과 기수 ID의 관계">
+        <div><small>사용자 화면</small><strong>기수 값 · gen</strong><span>“11기”처럼 표시하는 번호</span></div>
+        <b aria-hidden="true">↔</b>
+        <div><small>서버 요청</small><strong>기수 ID · gisuId</strong><span>해당 기수를 찾는 식별자</span></div>
+        <p>서로 다른 값일 수 있습니다. 매핑된 ID로 요청하고, 화면에는 기수 값을 표시합니다.</p>
+      </div>
       <div className="permissions-root"><strong>하나의 계정, 여러 역할</strong><span>챌린저 활동 이력에 기수·소속별 운영 역할이 더해집니다.</span></div>
       <div className="permissions-branches">
         {groups.map(group => <section className="permissions-branch" key={group.label}>

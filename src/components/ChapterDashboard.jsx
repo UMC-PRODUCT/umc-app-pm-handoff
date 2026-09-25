@@ -5,6 +5,7 @@ import ScreenStructure from './ScreenStructure'
 import AppExtensions from './AppExtensions'
 import NoticeMarkdownGuide from './NoticeMarkdownGuide'
 import CardExchangeDiagram from './CardExchangeDiagram'
+import { AttendanceFlow, IncidentFlow, NoticeFlow, RoadmapMap } from './FlowVisuals'
 
 const priorities = {
   core: { label: '핵심', description: '기본 이용과 UMC App의 본래 목적에 꼭 필요한 기능' },
@@ -47,6 +48,9 @@ export default function ChapterDashboard({ chapter, chapters }) {
                 <div className="topic-title"><span className="topic-number">{String(topicIndex + 1).padStart(2, '0')}</span><h3>{topic}{detail?.priority && <PriorityBadge priority={detail.priority} />}</h3></div>
                 {detail && <div className="topic-detail">
                   <p>{detail.body}</p>
+                  {chapter.id === 'chapter-06' && topicIndex === 0 && <NoticeFlow />}
+                  {chapter.id === 'chapter-06' && topicIndex === 1 && <AttendanceFlow />}
+                  {chapter.id === 'chapter-09' && topicIndex === 0 && <RoadmapMap />}
                   {chapter.id === 'chapter-03' && topicIndex === 1 && <ScreenStructure />}
                   {chapter.id === 'chapter-03' && topicIndex === 2 && <RolePermissions />}
                   {chapter.id === 'chapter-03' && topicIndex === 3 && <AppExtensions />}
@@ -56,8 +60,10 @@ export default function ChapterDashboard({ chapter, chapters }) {
                     <h4>{group.title}{group.priority && <PriorityBadge priority={group.priority} />}</h4>
                     {group.visual === 'notice-markdown' && <NoticeMarkdownGuide />}
                     {group.visual === 'card-exchange' && <CardExchangeDiagram />}
+                    {group.visual === 'incident-flow' && <IncidentFlow />}
                     {group.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                     {group.points?.length > 0 && <ul>{group.points.map((point) => <li key={point}>{point}</li>)}</ul>}
+                    {group.links?.length > 0 && <ul>{group.links.map((link) => <li key={link.href}><a href={link.href} target="_blank" rel="noopener noreferrer">{link.label} ↗</a></li>)}</ul>}
                   </section>)}</div>}
                   {chapter.id === 'chapter-05' && screenCaptures[topicIndex] && <section className="capture-section" aria-label={`${topic} 화면 캡처`}>
                     <h4>화면 캡처</h4>
@@ -72,7 +78,6 @@ export default function ChapterDashboard({ chapter, chapters }) {
                       </section>)}</div>
                     </div>)}
                   </section>}
-                  {detail.questions?.length > 0 && <div className="detail-questions"><h4>PM 확인 필요</h4><ul>{detail.questions.map((question) => <li key={question}>{question}</li>)}</ul></div>}
                 </div>}
               </li>
             )

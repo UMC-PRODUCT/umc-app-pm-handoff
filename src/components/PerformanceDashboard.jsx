@@ -28,7 +28,7 @@ export default function PerformanceDashboard() {
       <p className="metric-note">총 설치 수 89건에는 평균 표시가 없으며, 증감 −115는 건수입니다. 성장률의 +16.7%p는 퍼센트포인트 변화이고, 스토어 획득의 &gt;+999%는 999% 초과를 뜻합니다. 평균값을 합산하거나 기간 누적으로 환산하지 않습니다. 증감 비교 기간과 평균의 집계 단위는 확인이 필요합니다.</p>
       <div className="quality-grid android-charts">
         <figure className="metric-figure"><figcaption><h4>스토어 등록정보 방문과 획득</h4><p>콘솔 표시 평균 · 막대 기준 0–4명</p></figcaption><BarChart items={androidMetrics.slice(5)} maximum={4} unit="명" decimals={2} /><p className="metric-note">방문자와 획득은 각각의 평균입니다. 두 값을 합산하거나 나누어 전환율을 계산하지 않습니다.</p></figure>
-        <figure className="metric-figure"><figcaption><h4>사용자층 성장률</h4><p>콘솔 표시 평균 · 막대 기준 0–100%</p></figcaption><BarChart items={[androidMetrics[3]]} maximum={100} unit="%" decimals={1} /><p className="metric-insight">평균 성장률은 15.2%, 표시 증감은 +16.7%p입니다. 유입 지표 증가와 총 설치 수 감소가 함께 나타나므로, 다음 PM은 지표 정의와 비교 기간을 맞춰 원본을 확인합니다.</p></figure>
+        <figure className="metric-figure"><figcaption><h4>사용자층 성장률</h4><p>콘솔 표시 평균 · 막대 기준 0–100%</p></figcaption><BarChart items={[androidMetrics[3]]} maximum={100} unit="%" decimals={1} /><p className="metric-insight">평균 성장률은 15.2%, 표시 증감은 +16.7%p입니다. 유입 지표 증가와 총 설치 수 감소가 함께 나타나며, 비교 기간과 지표 정의가 없어 한 방향의 성과로 해석할 수 없습니다.</p></figure>
       </div>
       <div className="release-record">
         <div><span className="metric-eyebrow">별도 자료 · 버전별 배포 현황</span><h4>버전 3.4.0</h4><p>09.16 오전 8:10 출시 표시</p></div>
@@ -58,8 +58,8 @@ export default function PerformanceDashboard() {
     <section className="performance-block" aria-labelledby="quality-title">
       <header className="metric-section-title"><div><p className="metric-eyebrow">04 / iOS</p><h3 id="quality-title">다시 쓰는 경험과 안정성</h3></div><span className="metric-period">옵트인 사용자 데이터</span></header>
       <div className="quality-grid">
-        <div className="retention-record"><h4>유지율 · 재방문 확인 필요</h4><p>두 개요 모두 1일 유지율이 가장 높고 이후 낮아집니다. 9월 표시 화면에서는 7·14·28일 막대가 특히 낮게 보입니다.</p><div className="retention-days" aria-label="유지율 관찰 시점"><span>1일</span><span>7일</span><span>14일</span><span>28일</span></div><p className="metric-note">막대에 정확한 수치가 없어 비율을 임의로 복원하지 않았습니다. 관찰 기간이 충분한 코호트인지, 참여 주기와 맞는지 확인한 뒤 판단해야 합니다.</p><strong className="metric-action">다음 확인 → 유지율 원본 수치·대상 규모·집계 기간</strong></div>
-        <figure className="metric-figure crash-record"><figcaption><h4>버전별 충돌 기록</h4><p>추가 상세 화면: 03.10–09.20 · 연도 미표시<br />수치 표시 5개 버전 합계 <strong>{crashTotal}건</strong></p></figcaption><BarChart items={versionCrashes} maximum={146} unit="건" /><p className="metric-note">1.0·1.1·1.2·1.2.1·1.3.0은 ‘−’로 표시되어 합계에서 제외했습니다. 기존 09.22 개요의 146건·1건을 다시 더하지 않습니다. 03.17 개요는 ‘데이터 부족’입니다.</p><p className="metric-note">버전별 이용량이 없어 충돌률 또는 개선율로 비교할 수 없습니다. 충돌 건수는 영향을 받은 사용자 수와도 다릅니다.</p><strong className="metric-action">다음 확인 → 조회 연도·영향 사용자·발생 상황·버전별 이용량</strong></figure>
+        <div className="retention-record"><h4>유지율 · 원자료의 한계</h4><p>두 개요 모두 1일 유지율이 가장 높고 이후 낮아집니다. 9월 표시 화면에서는 7·14·28일 막대가 특히 낮게 보입니다.</p><div className="retention-days" aria-label="유지율 관찰 시점"><span>1일</span><span>7일</span><span>14일</span><span>28일</span></div><p className="metric-note">막대에 정확한 수치가 없어 비율을 임의로 복원하지 않았습니다. 관찰 기간이 충분한 코호트인지, 참여 주기와 맞는지 확인한 뒤 판단해야 합니다.</p><strong className="metric-action">제공되지 않은 값 · 유지율 원본 수치·대상 규모·집계 기간</strong></div>
+        <figure className="metric-figure crash-record"><figcaption><h4>버전별 충돌 기록</h4><p>추가 상세 화면: 03.10–09.20 · 연도 미표시<br />수치 표시 5개 버전 합계 <strong>{crashTotal}건</strong></p></figcaption><BarChart items={versionCrashes} maximum={146} unit="건" /><p className="metric-note">1.0·1.1·1.2·1.2.1·1.3.0은 ‘−’로 표시되어 합계에서 제외했습니다. 기존 09.22 개요의 146건·1건을 다시 더하지 않습니다. 03.17 개요는 ‘데이터 부족’입니다.</p><p className="metric-note">버전별 이용량이 없어 충돌률 또는 개선율로 비교할 수 없습니다. 충돌 건수는 영향을 받은 사용자 수와도 다릅니다.</p><strong className="metric-action">제공되지 않은 값 · 조회 연도·영향 사용자·발생 상황·버전별 이용량</strong></figure>
       </div>
     </section>
 
@@ -73,10 +73,10 @@ export default function PerformanceDashboard() {
       </div>
       <div className="quality-grid conversion-record">
         <figure className="metric-figure"><figcaption><h4>경로별 전환율</h4><p>콘솔에 표시된 일 평균 · 막대 기준 0–100%</p></figcaption><BarChart items={conversionSources} maximum={100} unit="%" decimals={2} /><p className="metric-note">‘기관 구입’과 ‘사용할 수 없음’은 ‘−’입니다. 경로별 일 평균을 합하거나 단순 평균하여 전체 전환율로 사용하지 않습니다.</p></figure>
-        <div className="retention-record"><h4>다음 PM이 확인할 점</h4><p>표시된 일 평균 전환율은 웹 추천 방문이 65.47%로 가장 높습니다. 유입 규모와 이용 맥락이 달라 이 값만으로 채널 효과의 우열을 확정할 수는 없습니다.</p><p>웹 안내 링크, 스토어 검색어, 앱 내 안내가 어떤 이용자를 데려오는지 확인하고, 동일 기간의 전환 대상과 다운로드 원본을 함께 확보합니다.</p><p className="metric-note">원 그래프에는 일부 일자의 전환율이 100%를 넘는 구간도 보입니다. 지표의 분자·분모와 소스 귀속 기준을 확인해야 하므로, 임의로 100%에 맞추거나 오류로 단정하지 않습니다.</p><strong className="metric-action">다음 확인 → 집계 기간 통일·전환율 정의·경로별 대상 규모</strong></div>
+        <div className="retention-record"><h4>경로별 전환율 해석</h4><p>표시된 일 평균 전환율은 웹 추천 방문이 65.47%로 가장 높습니다. 유입 규모와 이용 맥락이 달라 이 값만으로 채널 효과의 우열을 확정할 수는 없습니다.</p><p>웹 안내 링크, 스토어 검색어, 앱 내 안내의 유입 규모와 같은 기간의 다운로드 원본이 없어 경로별 효과를 비교할 수 없습니다.</p><p className="metric-note">원 그래프에는 일부 일자의 전환율이 100%를 넘는 구간도 보입니다. 지표의 분자·분모와 소스 귀속 기준을 확인해야 하므로, 임의로 100%에 맞추거나 오류로 단정하지 않습니다.</p><strong className="metric-action">제공되지 않은 값 · 동일한 집계 기간·전환율 정의·경로별 대상 규모</strong></div>
       </div>
     </section>
 
-    <details className="metric-reading-guide"><summary>집계 기준과 아직 확인할 수 없는 것</summary><ul><li>문서 기록 기간은 2026.03.10–09.24이며, Android KPI 화면은 2026.08.27–09.23(최근 28일), 기존 iOS 경로별 화면은 03.10–09.20입니다. 추가 업데이트·노출·전환율 자료는 2025.03.10–2026.09.20, 추가 충돌 상세는 03.10–09.20(연도 미표시)입니다. 기간 차이를 임의 수치로 채우지 않았습니다.</li><li>기기 수·설치 수·다운로드 수는 고유 사용자 수와 다릅니다. 플랫폼을 합친 MAU나 전체 가입자 수는 이 자료만으로 산출할 수 없습니다.</li><li>원본의 일별 숫자와 범례가 없는 추이는 선그래프로 재구성하지 않았습니다. 정확히 표시된 값만 막대와 표로 옮겼습니다.</li><li>유지율과 충돌은 옵트인 데이터로 전체 사용자를 대표한다고 단정할 수 없습니다.</li><li>사용자 만족도, 리뷰 내용, 문의 건수, 운영 업무 절감 시간은 이번 자료에 없습니다. 아래 인수인계 항목에서 별도로 수집합니다.</li></ul></details>
+    <details className="metric-reading-guide"><summary>집계 기준과 아직 확인할 수 없는 것</summary><ul><li>문서 기록 기간은 2026.03.10–09.24이며, Android KPI 화면은 2026.08.27–09.23(최근 28일), 기존 iOS 경로별 화면은 03.10–09.20입니다. 추가 업데이트·노출·전환율 자료는 2025.03.10–2026.09.20, 추가 충돌 상세는 03.10–09.20(연도 미표시)입니다. 기간 차이를 임의 수치로 채우지 않았습니다.</li><li>기기 수·설치 수·다운로드 수는 고유 사용자 수와 다릅니다. 플랫폼을 합친 MAU나 전체 가입자 수는 이 자료만으로 산출할 수 없습니다.</li><li>원본의 일별 숫자와 범례가 없는 추이는 선그래프로 재구성하지 않았습니다. 정확히 표시된 값만 막대와 표로 옮겼습니다.</li><li>유지율과 충돌은 옵트인 데이터로 전체 사용자를 대표한다고 단정할 수 없습니다.</li><li>사용자 만족도, 리뷰 내용, 문의 건수, 운영 업무 절감 시간은 이번 콘솔 자료에 없습니다. 아래에는 제옹이 직접 들은 반응을 정량 조사와 구분해 기록했습니다.</li></ul></details>
   </section>
 }
