@@ -1,7 +1,7 @@
 const surfaces = [
   { title: 'Live Activity', location: '잠금 화면 · Dynamic Island · Smart Stack', status: '출석 시간 안내 구현', kind: 'live', label: '출석 세션', value: '정시 → 지각 → 마감', description: '세션 이름과 남은 시간 표시', note: '출석 가능한 시간대를 확인합니다. 표시만으로 출석이 완료되지는 않습니다.' },
   { title: 'iPhone 홈 위젯', location: '홈 화면 · 작은 크기 / 중간 크기', status: '준비 중', kind: 'widget', label: 'UMC', value: '위젯 준비 중입니다.', description: '현재는 준비 중 안내 표시', note: '공지·일정 등 실제 정보와 상세 화면 연결은 추가 구현이 필요합니다.' },
-  { title: 'watchOS', location: 'Apple Watch 앱 · 워치페이스', status: '화면 구성 · 일부 연결 필요', kind: 'watch', label: '손목 위의 UMC', value: '출석 · The Ping', description: '세션·결과·공지 확인 화면', note: 'iPhone과 정보를 동기화합니다. 출석 요청의 실제 전송 연결은 추가 확인이 필요합니다.' },
+  { title: 'watchOS', location: 'Apple Watch 앱 · 워치페이스', status: '화면 구성 · 데이터 연결 필요', kind: 'watch', label: '손목 위의 UMC', value: '출석 · The Ping', description: '세션·결과·공지 화면 구성', note: '운영 일정·공지의 실제 공급과 출석 요청 전송은 아직 연결이 필요합니다.' },
 ]
 
 export default function AppExtensions() {
