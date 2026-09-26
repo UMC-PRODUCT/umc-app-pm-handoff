@@ -34,7 +34,17 @@ export default function ChapterDashboard({ chapter, chapters }) {
 
       {chapter.id === 'chapter-08' && <PerformanceDashboard />}
       <section className="chapter-content" aria-labelledby="chapter-title">
-        {chapter.id === 'chapter-05' && chapter.note && <div className="chapter-note capture-reading-guide"><h3>{chapter.note.title}</h3><p>{chapter.note.body}</p></div>}
+        {chapter.id === 'chapter-05' && chapter.note && <section className="capture-reading-guide" aria-labelledby="capture-guide-title">
+          <div className="capture-guide-heading">
+            <div><small>05 / READING GUIDE</small><h2 id="capture-guide-title">{chapter.note.title}</h2></div>
+            <p>{chapter.note.lead}</p>
+          </div>
+          <ol>{chapter.note.rules.map((rule, index) => <li key={rule.title}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{rule.title}</h3>
+            <p>{rule.body}</p>
+          </li>)}</ol>
+        </section>}
         {chapter.id === 'chapter-05' && <aside className="priority-guide" aria-labelledby="priority-guide-title">
           <h2 id="priority-guide-title">기능 중요도 <small>검토용 제안</small></h2>
           <ul>{Object.entries(priorities).map(([priority, { description }]) => <li key={priority}><PriorityBadge priority={priority} /><span>{description}</span></li>)}</ul>
