@@ -1,6 +1,6 @@
 import GrowthHero from './GrowthHero'
 
-export default function OverviewDashboard({ chapters, animate }) {
+export default function OverviewDashboard({ chapters, animate, onOpenWelcome }) {
   const topicCount = chapters.reduce((sum, chapter) => sum + chapter.topics.length, 0)
 
   return (
@@ -11,6 +11,7 @@ export default function OverviewDashboard({ chapters, animate }) {
           <p className="page-context">UMC App 서비스 기획</p>
           <h2 id="handoff-title">UMC PRODUCT를 위한<br />App 인수인계 기록.</h2>
           <p>제가 수기 노트에 남긴 기획 의도와 고민,<br />그리고 UMC App의 기능과 운영 정책을 함께 정리했습니다.</p>
+          <button className="welcome-reopen" type="button" onClick={onOpenWelcome}>제옹의 인사 다시 읽기 <span aria-hidden="true">↗</span></button>
         </div>
         <nav className="handoff-paths" aria-label="주요 내용 바로가기">
           {[

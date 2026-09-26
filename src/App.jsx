@@ -14,6 +14,11 @@ export default function App() {
     try { return window.localStorage.getItem('umc-handoff-sidebar') === 'open' } catch { return false }
   })
   const animateOverview = useRef(true)
+  const welcomeDialog = useRef(null)
+
+  const openWelcome = () => {
+    if (!welcomeDialog.current?.open) welcomeDialog.current?.showModal()
+  }
 
   const toggleSidebar = () => {
     const next = !isSidebarOpen
@@ -44,6 +49,13 @@ export default function App() {
   useEffect(() => {
     if (navigationCount > 0) document.getElementById('main-content')?.focus()
   }, [navigationCount])
+
+  useEffect(() => {
+    try {
+      if (window.localStorage.getItem('umc-handoff-welcome-seen')) return
+    } catch { /* Show the welcome message when storage is unavailable. */ }
+    openWelcome()
+  }, [])
 
   return (
     <div className={`app-shell${isSidebarOpen ? '' : ' sidebar-collapsed'}`} id="top">
@@ -104,7 +116,7 @@ export default function App() {
         <main id="main-content" tabIndex="-1">
           {activeChapter
             ? <ChapterDashboard chapter={activeChapter} chapters={chapters} />
-            : <OverviewDashboard chapters={chapters} animate={animateOverview.current} />}
+            : <OverviewDashboard chapters={chapters} animate={animateOverview.current} onOpenWelcome={openWelcome} />}
         </main>
 
         <footer className="site-footer">
@@ -112,6 +124,29 @@ export default function App() {
           <div className="footer-reference"><span>UMC PRODUCT Design System을 참고하여 제작했습니다.</span></div>
         </footer>
       </div>
+
+      <dialog className="welcome-dialog" ref={welcomeDialog} aria-labelledby="welcome-title" onClose={() => {
+        try { window.localStorage.setItem('umc-handoff-welcome-seen', 'true') } catch { /* The dialog remains usable without storage. */ }
+      }}>
+        <div className="welcome-dialog-heading">
+          <p>제옹의 인사</p>
+          <button type="button" onClick={() => welcomeDialog.current?.close()} aria-label="인사말 닫기">×</button>
+        </div>
+        <h2 id="welcome-title">UMC App 인수인계 문서를 공유합니다</h2>
+        <div className="welcome-dialog-body">
+          <p>안녕하세요. MacPilot 담당 제옹입니다.</p>
+          <p>작년 이맘때쯤 리버와 함께 팀을 만들면서 UMC App의 기획도 시작됐습니다. 어떤 문제를 앱으로 해결할 수 있을지 고민했고, 앱을 배포한 뒤에는 실제 사용 과정에서 드러난 문제를 어떻게 개선할지 계속 논의했습니다. 저는 그때 있었던 일과 기획의 이유, 내린 결정과 아쉬움을 수기 노트에 기록해 왔습니다.</p>
+          <p>리버는 제 기획을 다른 시선에서 살펴보고 의견을 더해 주었습니다. 덕분에 주어진 조건 안에서도 문제를 모바일에서 더 편하게 풀 방법을 함께 찾을 수 있었습니다.</p>
+          <p>저는 지금까지 두 기수 동안 UMC App의 모바일 PM과 iOS 개발을 담당해 왔습니다. 제 손안에 있던 앱을 이제 내려놓고, UMC PRODUCT의 모든 분께 전하려 합니다. 인수인계 문서에는 기능을 만든 이유부터 배포 후 겪은 문제, 이를 개선하려 했던 과정과 앞으로의 방향까지 담았습니다. 앱을 이어갈 분들이 지금의 화면과 기능뿐 아니라 그 뒤에 있던 고민도 이해할 수 있기를 바랍니다.</p>
+          <p>이 문서는 앞 장의 기획 배경을 알아야 뒤에 나오는 기능과 운영 이야기를 온전히 이해할 수 있도록 구성했습니다. 시간을 내어 첫 목차부터 순서대로, 어느 장도 빠뜨리지 말고 꼼꼼히 읽어주시기를 부탁드립니다. 그래야 기능이 만들어진 이유와 앞으로 지켜야 할 방향까지 함께 전해질 수 있습니다.</p>
+          <p>기록하지 못한 맥락이나 부족한 설명도 있을 수 있습니다. 읽다가 궁금한 점이 생기면 저나 리버를 태그해 주세요. 언제든 함께 살펴보고 답하겠습니다.</p>
+          <p>저는 이제 모두를 위한 새로운 UMC macOS 앱을 기획하고 만들러 가보겠습니다.</p>
+        </div>
+        <div className="welcome-dialog-actions">
+          <button type="button" onClick={() => welcomeDialog.current?.close()}>닫기</button>
+          <a href="#chapter-01" onClick={() => welcomeDialog.current?.close()}>목차 순서대로 읽기 <span aria-hidden="true">↗</span></a>
+        </div>
+      </dialog>
     </div>
   )
 }
