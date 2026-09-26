@@ -15,6 +15,7 @@ export default function App() {
   })
   const animateOverview = useRef(true)
   const welcomeDialog = useRef(null)
+  const hideWelcomeToday = useRef(null)
 
   const openWelcome = () => {
     if (!welcomeDialog.current?.open) welcomeDialog.current?.showModal()
@@ -52,7 +53,7 @@ export default function App() {
 
   useEffect(() => {
     try {
-      if (window.localStorage.getItem('umc-handoff-welcome-seen')) return
+      if (Number(window.localStorage.getItem('umc-handoff-welcome-hidden-until')) > Date.now()) return
     } catch { /* Show the welcome message when storage is unavailable. */ }
     openWelcome()
   }, [])
@@ -126,7 +127,14 @@ export default function App() {
       </div>
 
       <dialog className="welcome-dialog" ref={welcomeDialog} aria-labelledby="welcome-title" onClose={() => {
-        try { window.localStorage.setItem('umc-handoff-welcome-seen', 'true') } catch { /* The dialog remains usable without storage. */ }
+        try {
+          if (hideWelcomeToday.current?.checked) {
+            const tomorrow = new Date()
+            tomorrow.setHours(24, 0, 0, 0)
+            window.localStorage.setItem('umc-handoff-welcome-hidden-until', String(tomorrow.getTime()))
+          }
+        } catch { /* The dialog remains usable without storage. */ }
+        hideWelcomeToday.current.checked = false
       }}>
         <div className="welcome-dialog-heading">
           <p>제옹의 인사</p>
@@ -143,6 +151,7 @@ export default function App() {
           <p>저는 이제 모두를 위한 새로운 UMC macOS 앱을 기획하고 만들러 가보겠습니다.</p>
         </div>
         <div className="welcome-dialog-actions">
+          <label><input type="checkbox" ref={hideWelcomeToday} /> 오늘 하루 보지 않기</label>
           <button type="button" onClick={() => welcomeDialog.current?.close()}>닫기</button>
           <a href="#chapter-01" onClick={() => welcomeDialog.current?.close()}>목차 순서대로 읽기 <span aria-hidden="true">↗</span></a>
         </div>

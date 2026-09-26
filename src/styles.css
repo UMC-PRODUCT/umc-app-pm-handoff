@@ -228,7 +228,9 @@ main { min-height: calc(100vh - 116px); outline: none; }
 .welcome-dialog h2 { margin: 29px 32px 22px; font-size: clamp(25px, 4vw, 34px); line-height: 1.3; letter-spacing: -.055em; word-break: keep-all; }
 .welcome-dialog-body { padding: 0 32px 15px; }
 .welcome-dialog-body p { margin: 0 0 18px; color: #4b584e; font-size: 14px; line-height: 1.85; word-break: keep-all; }
-.welcome-dialog-actions { position: sticky; bottom: 0; display: flex; justify-content: flex-end; gap: 10px; padding: 16px 32px; border-top: 1px solid #e1e7df; background: #fff; }
+.welcome-dialog-actions { position: sticky; bottom: 0; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 10px; padding: 16px 32px; border-top: 1px solid #e1e7df; background: #fff; }
+.welcome-dialog-actions label { display: inline-flex; align-items: center; gap: 8px; margin-right: auto; color: #4b584e; font-size: 13px; cursor: pointer; }
+.welcome-dialog-actions input { width: 16px; height: 16px; margin: 0; accent-color: #256044; }
 .welcome-dialog-actions button, .welcome-dialog-actions a { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 44px; padding: 0 17px; border: 1px solid #cdd9ce; border-radius: 5px; background: #fff; color: #31563d; font: inherit; font-size: 13px; font-weight: 700; text-decoration: none; cursor: pointer; }
 .welcome-dialog-actions a { border-color: #256044; background: #256044; color: #fff; }
 .welcome-dialog-actions button:hover { background: #f0f5ef; }
@@ -286,6 +288,7 @@ main { min-height: calc(100vh - 116px); outline: none; }
   .welcome-dialog h2 { margin: 25px 22px 19px; }
   .welcome-dialog-body { padding: 0 22px 5px; }
   .welcome-dialog-actions { padding: 13px 22px; }
+  .welcome-dialog-actions label { flex-basis: 100%; }
 }
 @container (max-width: 420px) {
   .growth-stage { height: 262px; }
